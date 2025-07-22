@@ -18,4 +18,18 @@
         android:layout_marginStart="-22dp"
         android:layout_marginTop="-150dp"
         android:background="@drawable/circle" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/GetStartedButton"
+        android:layout_width="175dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="#b23b3b"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/exit"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 </FrameLayout>

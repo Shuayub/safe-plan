@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/SplashScreen">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/SplashScreen"
         android:name="com.example.weatherapp.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/intro_screen">
+        android:label="@string/intro_screen"
+        tools:layout="@layout/login_email">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -19,7 +19,7 @@
         android:id="@+id/SecondFragment"
         android:name="com.example.weatherapp.SecondFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/registration">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

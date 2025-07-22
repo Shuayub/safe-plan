@@ -1,6 +1,33 @@
 <resources>
+    //Exit Button
+    <string name="exit">Exit</string>
+
+    //Fragment Labels
+    <string name="intro_screen">Splash Screen</string>
+
+    //IntroScreen
     <string name="Stay_Safe_With_Us">Stay Safe With Us!</string>
     <string name="Get_Started">Get Started</string>
     <string name="Intro">Create a personalized safety plan before, during, or after an abusive relationship. This app is designed to support you with flexible planning, private storage, and access to trusted resources.</string>
+
+    //Registration screen/Pin Screen
+    <string name="register">Register</string>
+    <string name="finish">Finish Setup</string>
+    <string name="registerIntro">Welcome Onboard!</string>
+    <string name="registerMessage">Your safety is our priority</string>
+    <string name="email">Email</string>
+    <string name="emailExample">mary.elliot@mail.com</string>
+    <string name="password">Password</string>
+    <string name="password_example">************</string>
+    <string name="ConfirmPassword">Confirm Password</string>
+    <string name="pinReg">4 or 6 digit Pin</string>
+    <string name="pin_example">****</string>
+
+    //Login Screens
+    <string name="loginIntro">Welcome Back!</string>
+    <string name="emailSignIn">Continue With Email</string>
+    <string name="pinLog">Pin</string>
+    <string name="Login">Login</string>
+    <string name="pinSignIn">Continue With Pin</string>
 
 </resources>
