@@ -1,0 +1,18 @@
+[
+  {
+    "question": "When do you plan to leave?",
+    "options": ["text"]
+  },
+  {
+    "question": "Do you have a go-bag packed with essentials?",
+    "options": ["Yes", "No"]
+  },
+  {
+    "question": "Where do you keep emergency cash or cards?",
+    "options": ["Closet", "Under Bed", "Hidden Bag", "Other text"]
+  },
+  {
+    "question": "Have you identified a safe place to stay?",
+    "options": ["Yes text", "No"]
+  }
+]

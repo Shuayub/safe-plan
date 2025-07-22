@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Which best describes your situation?",
+    "options": ["Still in a relationship", "Planning to leave", "Post-separation"]
+  },
+  {
+    "question": "What city do you live in?",
+    "options": ["Drop down menu"]
+  },
+  {
+    "question": "Which room in your home feels the safest if you need to get away quickly?",
+    "options": ["text"]
+  },
+  {
+    "question": "Who do you live with?",
+    "options": ["Family", "Roommates", "Alone", "Partner"]
+  },
+  {
+    "question": "Do you have children?",
+    "options": ["Yes - enter code word", "No"]
+  }
+]

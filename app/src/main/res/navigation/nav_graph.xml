@@ -24,5 +24,17 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_SurveyFragment"
+            app:destination="@id/fragment_survey" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_survey"
+        android:name="com.example.weatherapp.Survey"
+        android:label="Third Fragment"
+        tools:layout="@layout/fragment_survey">
+        <action
+            android:id="@+id/action_ThirdFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>

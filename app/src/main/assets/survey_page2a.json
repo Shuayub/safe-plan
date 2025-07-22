@@ -1,0 +1,14 @@
+[
+  {
+    "question": "Which form(s) of abuse are you experiencing? (Select multiple)",
+    "options": ["Physical", "Emotional", "Financial", "Other text"]
+  },
+  {
+    "question": "Are you recording the incidents (dates, times, details)?",
+    "options": ["Yes", "No"]
+  },
+  {
+    "question": "Name one person you can call immediately in an emergency.",
+    "options": ["text"]
+  }
+]

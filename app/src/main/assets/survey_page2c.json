@@ -1,0 +1,14 @@
+[
+  {
+    "question": "Has the abuser continued any contact?",
+    "options": ["Yes", "No"]
+  },
+  {
+    "question": "Do you have a protection order? If yes, which type?",
+    "options": ["Yes text", "No"]
+  },
+  {
+    "question": "Are you using any safety tools (cameras, door alarms)",
+    "options": ["Yes text", "No"]
+  }
+]
