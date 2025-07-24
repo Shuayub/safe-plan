@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.weatherapp.databinding.FragmentFirstBinding;
+import com.example.weatherapp.databinding.IntroFragmentBinding;
 
-public class FirstFragment extends Fragment {
+public class IntroFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private IntroFragmentBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +21,7 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding = IntroFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -29,9 +29,9 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFirst.setOnClickListener(v ->
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment)
+        binding.GetStartedButton.setOnClickListener(v ->
+                NavHostFragment.findNavController(IntroFragment.this)
+                        .navigate(R.id.action_intro_to_register)
         );
     }
 

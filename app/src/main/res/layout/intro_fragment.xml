@@ -29,7 +29,7 @@
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottomGuide"
-        app:layout_constraintVertical_bias="0.042"
+        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintWidth_percent="0.9" />
 
     <TextView
@@ -47,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.525"
+        app:layout_constraintVertical_bias="0.530"
         app:layout_constraintWidth_percent="1" />
 
     <TextView
@@ -67,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.725"
+        app:layout_constraintVertical_bias="0.765"
         app:layout_constraintWidth_percent="0.725" />
 
     <ImageView

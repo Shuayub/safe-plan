@@ -3,26 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/SplashScreen">
+    app:startDestination="@id/Intro">
 
     <fragment
-        android:id="@+id/SplashScreen"
-        android:name="com.example.weatherapp.FirstFragment"
-        android:label="@string/intro_screen"
-        tools:layout="@layout/login_email">
+        android:id="@+id/Intro"
+        android:name="com.example.weatherapp.IntroFragment"
+        android:label="@+string/intro_fragment"
+        tools:layout="@layout/intro_fragment">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_intro_to_register"
+            app:destination="@id/Register" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.weatherapp.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:id="@+id/Register"
+        android:name="com.example.weatherapp.RegisterFragment"
+        android:label="@+string/register_fragment"
         tools:layout="@layout/registration">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/Login" />
+    </fragment>
+    <fragment
+        android:id="@+id/Login"
+        android:name="com.example.weatherapp.LoginEmailFragment"
+        android:label="@+string/login_email_fragment"
+        tools:layout="@layout/login_email">
+
+        <action
+            android:id="@+id/action_login_to_create_pin"
+            app:destination="@id/Intro" />
     </fragment>
 </navigation>

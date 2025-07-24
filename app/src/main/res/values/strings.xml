@@ -1,9 +1,13 @@
 <resources>
+    //Other strings
+    <string name="default_web_client_id">1084625879730-r4na8nglfjbio81bkaqvibp606fapvvh.apps.googleusercontent.com</string>
+
+
     //Exit Button
     <string name="exit">Exit</string>
 
-    //Fragment Labels
-    <string name="intro_screen">Splash Screen</string>
+    //Application
+    <string name="app_name">Weather App</string>
 
     //IntroScreen
     <string name="Stay_Safe_With_Us">Stay Safe With Us!</string>
@@ -22,6 +26,9 @@
     <string name="ConfirmPassword">Confirm Password</string>
     <string name="pinReg">4 or 6 digit Pin</string>
     <string name="pin_example">****</string>
+    <string name="email_error">❌ Please enter a valid email</string>
+    <string name="password_error">❌ Please enter a password</string>
+    <string name="confirm_password_error">❌ Passwords do not match</string>
 
     //Login Screens
     <string name="loginIntro">Welcome Back!</string>
@@ -29,5 +36,14 @@
     <string name="pinLog">Pin</string>
     <string name="Login">Login</string>
     <string name="pinSignIn">Continue With Pin</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 
 </resources>

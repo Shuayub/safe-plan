@@ -59,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415"
+        app:layout_constraintVertical_bias="0.395"
         app:layout_constraintWidth_percent="0.9" />
 
     <EditText
@@ -80,8 +80,25 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintVertical_bias="0.43"
         app:layout_constraintWidth_percent="0.9"/>
+
+    <TextView
+        android:id="@+id/emailError"
+        android:visibility="invisible"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/email_error"
+        android:textColor="#FF0000"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49"
+        app:layout_constraintWidth_percent="0.85" />
 
     <TextView
         android:id="@+id/textViewPassword"
@@ -96,7 +113,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.530"
+        app:layout_constraintVertical_bias="0.540"
         app:layout_constraintWidth_percent="0.9" />
 
     <EditText
@@ -117,8 +134,25 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565"
+        app:layout_constraintVertical_bias="0.575"
         app:layout_constraintWidth_percent="0.9" />
+
+    <TextView
+        android:id="@+id/passwordError"
+        android:visibility="invisible"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/password_error"
+        android:textColor="#FF0000"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.635"
+        app:layout_constraintWidth_percent="0.85" />
 
     <TextView
         android:id="@+id/textViewConfirmPswrd"
@@ -133,7 +167,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645"
+        app:layout_constraintVertical_bias="0.675"
         app:layout_constraintWidth_percent="0.9" />
 
     <EditText
@@ -154,8 +188,25 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.680"
+        app:layout_constraintVertical_bias="0.710"
         app:layout_constraintWidth_percent="0.9" />
+
+    <TextView
+        android:id="@+id/confirmPasswordError"
+        android:visibility="invisible"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/confirm_password_error"
+        android:textColor="#FF0000"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.770"
+        app:layout_constraintWidth_percent="0.85" />
 
     <ImageButton
         android:id="@+id/googleSignInButton"
@@ -174,10 +225,10 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775"/>
+        app:layout_constraintVertical_bias="0.825"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/GetStartedButton"
+        android:id="@+id/RegisterButton"
         android:layout_width="0dp"
         android:layout_height="63dp"
         android:backgroundTint="#64d4c4"
@@ -193,7 +244,7 @@
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottomGuide"
-        app:layout_constraintVertical_bias="0.042"
+        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintWidth_percent="0.9" />
 
 
