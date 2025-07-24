@@ -1,14 +1,17 @@
 [
   {
+    "type": "checkbox",
     "question": "Which form(s) of abuse are you experiencing? (Select multiple)",
-    "options": ["Physical", "Emotional", "Financial", "Other text"]
+    "options": ["Physical", "Emotional", "Financial", "Other"]
   },
   {
+    "type": "radio",
     "question": "Are you recording the incidents (dates, times, details)?",
-    "options": ["Yes", "No"]
+    "options": ["No", "Yes"]
   },
   {
+    "type": "text",
     "question": "Name one person you can call immediately in an emergency.",
-    "options": ["text"]
+    "placeholder": "Enter your description here"
   }
 ]

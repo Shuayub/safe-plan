@@ -34,7 +34,7 @@
         android:label="Third Fragment"
         tools:layout="@layout/fragment_survey">
         <action
-            android:id="@+id/action_ThirdFragment_to_FirstFragment"
+            android:id="@+id/action_SurveyFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>

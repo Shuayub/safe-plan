@@ -1,14 +1,19 @@
 [
   {
+    "type": "radio",
     "question": "Has the abuser continued any contact?",
-    "options": ["Yes", "No"]
+    "options": ["No", "Yes"]
   },
   {
+    "type": "radio_with_other",
     "question": "Do you have a protection order? If yes, which type?",
-    "options": ["Yes text", "No"]
+    "options": ["No","Yes"],
+    "other_placeholder": "Please specify"
   },
   {
+    "type": "radio_with_other",
     "question": "Are you using any safety tools (cameras, door alarms)",
-    "options": ["Yes text", "No"]
+    "options": ["No", "Yes"],
+    "other_placeholder": "Please specify"
   }
 ]

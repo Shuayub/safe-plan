@@ -1,18 +1,23 @@
 [
   {
+    "type": "text",
     "question": "When do you plan to leave?",
-    "options": ["text"]
+    "placeholder": "Enter your description here"
   },
   {
+    "type": "radio",
     "question": "Do you have a go-bag packed with essentials?",
-    "options": ["Yes", "No"]
+    "options": ["No", "Yes"]
   },
   {
+    "type": "text",
     "question": "Where do you keep emergency cash or cards?",
-    "options": ["Closet", "Under Bed", "Hidden Bag", "Other text"]
+    "placeholder": "Enter your description here"
   },
   {
+    "type": "radio_with_other",
     "question": "Have you identified a safe place to stay?",
-    "options": ["Yes text", "No"]
+    "options": ["No", "Yes"],
+    "other_placeholder": "Please specify"
   }
 ]

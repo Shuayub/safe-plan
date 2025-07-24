@@ -1,5 +1,6 @@
 [
   {
+    "type": "radio",
     "question": "Which type of support would help most right now?",
     "options": ["Counselling", "Legal aid", "Financial guidance", "Co-parenting resources"]
   }
