@@ -29,12 +29,24 @@
             app:destination="@id/fragment_survey" />
     </fragment>
     <fragment
+        android:id="@+id/TipsFragment"
+        android:name="com.example.weatherapp.TipsFragment"
+        android:label="Safety Tips"
+        tools:layout="@layout/fragment_tips">
+
+        <action
+            android:id="@+id/action_TipsFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment"
+            app:popUpTo="@id/FirstFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
         android:id="@+id/fragment_survey"
         android:name="com.example.weatherapp.Survey"
         android:label="Third Fragment"
         tools:layout="@layout/fragment_survey">
         <action
             android:id="@+id/action_SurveyFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/TipsFragment" />
     </fragment>
 </navigation>

@@ -45,8 +45,8 @@ public class Survey extends Fragment {
     private int currentPage = 1;
 
     // Track UI elements for each question
-    private Map<Integer, View> questionViews = new HashMap<>();
-    private String[] currentPageQuestionTypes = new String[10];
+    private final Map<Integer, View> questionViews = new HashMap<>();
+    private final String[] currentPageQuestionTypes = new String[10];
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,21 +82,29 @@ public class Survey extends Fragment {
                 if (selectedId != -1) {
                     RadioButton selected = q1View.findViewById(selectedId);
                     viewModel.setPage1Choice(selected.getText().toString());
+                    if (selected.getText().toString().equals("Still in a relationship")){
+                        currentPage = 2;
+                    }
+                    else if (selected.getText().toString().equals("Planning to leave")){
+                        currentPage = 3;
+                    }
+                    else if (selected.getText().toString().equals("Post-separation")){
+                        currentPage = 4;
+                    }
                 }
             }
 
-            currentPage = 2;
             loadPage(currentPage);
             binding.buttonSurvey.setText("Next");
 
-        } else if (currentPage == 2) {
+        } else if (currentPage == 2 || currentPage == 3 || currentPage == 4) {
             if (!validatePage()) return;
             saveCurrentPageAnswers();
-            currentPage = 3;
+            currentPage = 5;
             loadPage(currentPage);
             binding.buttonSurvey.setText("Submit");
 
-        } else if (currentPage == 3) {
+        } else if (currentPage == 5) {
             if (!validatePage()) return;
             saveCurrentPageAnswers();
             submitSurvey();
@@ -106,6 +114,14 @@ public class Survey extends Fragment {
     private void loadPage(int pageNumber) {
         binding.surveyContainer.removeAllViews();
         questionViews.clear();
+
+        if (pageNumber > 1 && pageNumber < 5){
+            pageNumber = 2;
+        }
+        else if (pageNumber == 5){
+            pageNumber = 3;
+        }
+
         binding.pageIndicator.setText("Page " + pageNumber + " of 3");
 
         String filename = getPageFilename(pageNumber);
@@ -400,7 +416,6 @@ public class Survey extends Fragment {
             View inputView = questionViews.get(i);
             if (inputView == null) continue;
 
-            // Add any required validation here
             if (currentPageQuestionTypes[i].equals("text")) {
                 EditText et = (EditText) inputView;
                 if (et.getText().toString().trim().isEmpty()) {
@@ -438,6 +453,9 @@ public class Survey extends Fragment {
                 }
             }
         }
+
+        saveCurrentPageAnswers(); // Ensure final page answers are saved
+        Tips.generateAndSaveTips(requireContext(), viewModel);
 
         Log.d(TAG, "Survey Results:\n" + surveyResults);
         Toast.makeText(requireContext(), "Survey submitted!", Toast.LENGTH_SHORT).show();

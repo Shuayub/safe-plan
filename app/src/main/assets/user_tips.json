@@ -1,0 +1,381 @@
+[
+  {
+    "id": "P1Q1a",
+    "text": "Keep this plan updated, and remember you can always reach out if things escalate.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 0,
+        "answers": ["Still in a relationship"]
+      }
+    }
+  },
+  {
+    "id": "P1Q1b",
+    "text": "Start packing small items now so you’re ready when you decide to leave.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 0,
+        "answers": ["Planning to leave"]
+      }
+    }
+  },
+  {
+    "id": "P1Q1c",
+    "text": "It’s normal to feel unsettled, refer back to this plan whenever you need a safety reminder.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 0,
+        "answers": ["Post-separation"]
+      }
+    }
+  },
+  {
+    "id": "P1Q2",
+    "text": "Save the local support numbers for {city} in your phone’s speed-dial so you can call immediately if you need help.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 1
+      },
+      "replacements": [
+        {
+          "placeholder": "{city}",
+          "question": {
+            "page": 1,
+            "question": 1
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P1Q3",
+    "text": "Keep your essentials (phone, keys, and a small flashlight) in {safe_room} so you can grab them instantly when you need to leave.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 2
+      },
+      "replacements": [
+        {
+          "placeholder": "{safe_room}",
+          "question": {
+            "page": 1,
+            "question": 2
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P1Q4a",
+    "text": "Let those you live with: Family know your safe room and cue‐word so they can support you in an emergency.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 3,
+        "answers": ["Family"]
+      }
+    }
+  },
+  {
+    "id": "P1Q4b",
+    "text": "Let those you live with: Roommates know your safe room and cue‐word so they can support you in an emergency.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 3,
+        "answers": ["Roommates"]
+      }
+    }
+  },
+  {
+    "id": "P1Q4c",
+    "text": "Since you live alone, identify a trusted neighbor or friend and share your safe room location with them.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 3,
+        "answers": ["Alone"]
+      }
+    }
+  },
+  {
+    "id": "P1Q4d",
+    "text": "Because you live with your partner, keep your safety plan hidden (in {safe_room}), and consider storing a digital copy in a password-protected note they won’t see.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 3,
+        "answers": ["Partner"]
+      },
+      "replacements": [
+        {
+          "placeholder": "{safe_room}",
+          "question": {
+            "page": 1,
+            "question": 2
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P2aQ1",
+    "text": "If you face {abuse_type} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 2,
+        "question": 0
+      },
+      "replacements": [
+        {
+          "placeholder": "{abuse_type}",
+          "question": {
+            "page": 2,
+            "question": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P2aQ2a",
+    "text": "Log each incident (date, time, and a brief note) so you have clear records if\nneeded later.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 2,
+        "question": 1,
+        "answers": ["Yes"]
+      }
+    }
+  },
+  {
+    "id": "P2aQ2b",
+    "text": "Even brief notes on your phone can be helpful. Start logging today.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 2,
+        "question": 1,
+        "answers": ["No"]
+      }
+    }
+  },
+  {
+    "id": "P2aQ3",
+    "text": "Save {contact_name} in your phone under a code-word so you can quietly call them when you need help.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 2,
+        "question": 2
+      },
+      "replacements": [
+        {
+          "placeholder": "{contact_name}",
+          "question": {
+            "page": 2,
+            "question": 2
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P2bQ1",
+    "text": "Set a real target {leave_timing} and pack one essential item each day until you’re\nready.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 3,
+        "question": 0
+      },
+      "replacements": [
+        {
+          "placeholder": "{leave_timing}",
+          "question": {
+            "page": 3,
+            "question": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P2bQ2a",
+    "text": "Great! Keep your go-bag in a hidden spot so you can grab it quickly.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 3,
+        "question": 1,
+        "answers": ["Yes"]
+      }
+    }
+  },
+  {
+    "id": "P2bQ2b",
+    "text": "Pack a simple go-bag today with essentials like your ID, some cash, and a charger.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 3,
+        "question": 1,
+        "answers": ["No"]
+      }
+    }
+  },
+  {
+    "id": "P2bQ3",
+    "text": "Stash some cash and a spare card in {money_location}, a spot your partner won’t suspect.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 3,
+        "question": 2
+      },
+      "replacements": [
+        {
+          "placeholder": "{money_location}",
+          "question": {
+            "page": 3,
+            "question": 2
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P2bQ4a",
+    "text": "Make sure {temp_shelter} knows you may arrive unexpectedly and how to contact you.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 3,
+        "question": 3,
+        "answers": ["Yes"]
+      },
+      "replacements": [
+        {
+          "placeholder": "{temp_shelter}",
+          "question": {
+            "page": 3,
+            "question": 3
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P2bQ4b",
+    "text": "Reach out to Victim Services Toronto or a trusted friend now to secure a shelter option before you leave.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 3,
+        "question": 3,
+        "answers": ["No"]
+      }
+    }
+  },
+  {
+    "id": "P2cQ1a",
+    "text": "Since you’ve heard from them, stay vigilant and keep your protection order handy if you have one.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 4,
+        "question": 0,
+        "answers": ["Yes"]
+      }
+    }
+  },
+  {
+    "id": "P2cQ1b",
+    "text": "Even without contact, keep your doors locked and your phone on in case you need to call 911.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 4,
+        "question": 0,
+        "answers": ["No"]
+      }
+    }
+  },
+  {
+    "id": "P2cQ2a",
+    "text": "Carry your {legal_order} at all times and share copies with anyone who needs to know.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 4,
+        "question": 1,
+        "answers": ["Yes"]
+      },
+      "replacements": [
+        {
+          "placeholder": "{legal_order}",
+          "question": {
+            "page": 4,
+            "question": 1
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P2cQ2b",
+    "text": "Consider applying for a protection order; it can help deter unwanted contact.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 4,
+        "question": 1,
+        "answers": ["No"]
+      }
+    }
+  },
+  {
+    "id": "P2cQ3a",
+    "text": "Make sure your {equipment} is in working order and placed where you’ll notice it.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 4,
+        "question": 2,
+        "answers": ["Yes"]
+      },
+      "replacements": [
+        {
+          "placeholder": "{equipment}",
+          "question": {
+            "page": 4,
+            "question": 2
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P2cQ3b",
+    "text": "Consider installing a simple door alarm or camera to alert you to unexpected entry.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 4,
+        "question": 2,
+        "answers": ["No"]
+      }
+    }
+  },
+  {
+    "id": "P3Q1",
+    "text": "Reach out to {support_choice} - they can offer the specialized help you need right now.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 5,
+        "question": 0
+      },
+      "replacements": [
+        {
+          "placeholder": "{support_choice}",
+          "question": {
+            "page": 5,
+            "question": 0
+          }
+        }
+      ]
+    }
+  }
+
+]
