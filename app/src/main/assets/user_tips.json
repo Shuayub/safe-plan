@@ -124,6 +124,37 @@
     }
   },
   {
+    "id": "P1Q5a",
+    "text": "Practice your safety plan with your children so that when they hear {code_word}, they know exactly what to do.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 4,
+        "answers": ["Yes"]
+      },
+      "replacements": [
+        {
+          "placeholder": "{code_word}",
+          "question": {
+            "page": 1,
+            "question": 4
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "P1Q5b",
+    "text": "Even without children, it helps to identify a second safe space in your home.",
+    "conditions": {
+      "triggerQuestion": {
+        "page": 1,
+        "question": 4,
+        "answers": ["No"]
+      }
+    }
+  },
+  {
     "id": "P2aQ1",
     "text": "If you face {abuse_type} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
     "conditions": {
