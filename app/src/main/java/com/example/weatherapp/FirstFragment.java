@@ -31,7 +31,11 @@ public class FirstFragment extends Fragment {
 
         binding.buttonFirst.setOnClickListener(v ->
                 NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SupportFragment)//Change to supportfrag
+                        .navigate(R.id.action_FirstFragment_to_SupportFragment)
+        );
+        binding.btnReminder.setOnClickListener(v ->
+                NavHostFragment.findNavController(FirstFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_ReminderFragment)
         );
     }
 

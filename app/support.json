@@ -1,0 +1,37 @@
+{
+  "Toronto": {
+    "Local Services": "https://www.victimservicestoronto.com/home",
+    "Hotline": "tel:1-800-668-825",
+    "Shelters": "https://www.torontocentralhealthline.ca/listServices.aspx?id=10714",
+    "Legal Aid": "tel:416-696-2992",
+    "Police": "tel:911"
+  },
+  "Vancouver": {
+    "Local Services": "http://www.bcehs.ca/health-info/support-for-bcehs-family-members/critical-incident-stress/domestic-violence",
+    "Hotline": "tel:1-800-563-0808",
+    "Shelters": "http://www.act2.ca/housing-support/",
+    "Legal Aid": "tel:604-718-27802",
+    "Police": "tel:911"
+  },
+  "Calgary": {
+    "Local Services": "https://www.calgary.ca/cps/community-programs-and-resources/victims-of-crime/victim-resources-domestic-violence.html",
+    "Hotline": "tel:855-443-572",
+    "Shelters": "https://www.ywcalgary.ca/programs/domestic-violence-shelter",
+    "Legal Aid": "tel:587-349-7994",
+    "Police": "tel:911"
+  },
+  "Edmonton": {
+    "Local Services": "https://www.thetodaycentre.ca",
+    "Hotline": "tel:310-1818",
+    "Shelters": "https://cssalberta.ca/Our-Services/Domestic-Abuse-Shelters-Support/Lurana-Shelter",
+    "Legal Aid": "tel:780-422-3699",
+    "Police": "tel:911"
+  },
+  "Ottawa": {
+    "Local Services": "https://familyservicesottawa.org",
+    "Hotline": "tel:613-236-1222",
+    "Shelters": "https://wocrc.ca/program/chrysalis-house/",
+    "Legal Aid": "tel:1-800-668-8258",
+    "Police": "tel:911"
+  }
+}
