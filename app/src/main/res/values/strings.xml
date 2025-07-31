@@ -6,11 +6,12 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string-array name="frequency_options">
+    <string-array name="reminder_frequencies">
         <item>Daily</item>
         <item>Weekly</item>
         <item>Monthly</item>
     </string-array>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
