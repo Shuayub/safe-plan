@@ -41,7 +41,9 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.work.runtime)
     testImplementation(libs.junit)
+    implementation("androidx.work:work-runtime:2.8.1")
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
