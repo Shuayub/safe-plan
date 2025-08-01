@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "1084625879730",
+    "firebase_url": "https://weatherapp-63ad9-default-rtdb.firebaseio.com",
     "project_id": "weatherapp-63ad9",
     "storage_bucket": "weatherapp-63ad9.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1084625879730:android:c8edb4da1dad2bdc5a3fab",
+        "mobilesdk_app_id": "1:1084625879730:android:cdc21476177cdc945a3fab",
         "android_client_info": {
           "package_name": "com.example.weatherapp"
         }
@@ -22,7 +23,7 @@
           }
         },
         {
-          "client_id": "1084625879730-r4na8nglfjbio81bkaqvibp606fapvvh.apps.googleusercontent.com",
+          "client_id": "1084625879730-bdse12i3r49ou9d3h8a2r18boo93f4gu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1084625879730-r4na8nglfjbio81bkaqvibp606fapvvh.apps.googleusercontent.com",
+              "client_id": "1084625879730-bdse12i3r49ou9d3h8a2r18boo93f4gu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

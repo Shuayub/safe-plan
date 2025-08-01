@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -63,29 +64,49 @@
         app:layout_constraintWidth_percent="0.9" />
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/pinEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/pin_example"
         android:autofillHints=""
         android:inputType="numberPassword"
+        android:maxLength="6"
         android:background="@drawable/edittext_background"
         android:padding="16dp"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:textColorHint="#999999"
         android:textColor="#000000"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:letterSpacing="0.5"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565"
+        app:layout_constraintVertical_bias="0.585"
         app:layout_constraintWidth_percent="0.9" />
 
+    <TextView
+        android:id="@+id/pinError"
+        android:visibility="invisible"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/pin_error"
+        android:textColor="#FF0000"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.660"
+        app:layout_constraintWidth_percent="0.85" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/GetStartedButton"
+        android:id="@+id/FinishButton"
         android:layout_width="0dp"
         android:layout_height="63dp"
         android:backgroundTint="#64d4c4"
@@ -103,6 +124,5 @@
         app:layout_constraintTop_toTopOf="@+id/bottomGuide"
         app:layout_constraintVertical_bias="0.042"
         app:layout_constraintWidth_percent="0.9" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

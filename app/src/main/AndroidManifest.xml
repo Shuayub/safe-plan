@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.weatherapp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -19,7 +20,7 @@
             android:value="true" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.weatherapp.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.WeatherApp">
             <intent-filter>

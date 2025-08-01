@@ -1,6 +1,6 @@
 <resources>
     //Other strings
-    <string name="default_web_client_id">1084625879730-r4na8nglfjbio81bkaqvibp606fapvvh.apps.googleusercontent.com</string>
+    <string name="client_id">1084625879730-bdse12i3r49ou9d3h8a2r18boo93f4gu.apps.googleusercontent.com</string>
 
 
     //Exit Button
@@ -26,9 +26,12 @@
     <string name="ConfirmPassword">Confirm Password</string>
     <string name="pinReg">4 or 6 digit Pin</string>
     <string name="pin_example">****</string>
-    <string name="email_error">❌ Please enter a valid email</string>
-    <string name="password_error">❌ Please enter a password</string>
-    <string name="confirm_password_error">❌ Passwords do not match</string>
+    <string name="email_error">\u274C Please enter a valid email</string>
+    <string name="password_error">\u274C Please enter a password</string>
+    <string name="confirm_password_error">\u274C Passwords do not match</string>
+
+    //Registration email verification
+    <string name="verify_email">Please Verify Your Email</string>
 
     //Login Screens
     <string name="loginIntro">Welcome Back!</string>
@@ -45,5 +48,11 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    //Pin Registration
+    <string name="pin_error">\u274C please enter a valid Pin</string>
+
+    //Pin Login
+    <string name="invalid_pin">\u274C Invalid Pin</string>
 
 </resources>

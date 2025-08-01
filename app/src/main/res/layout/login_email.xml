@@ -81,6 +81,23 @@
         app:layout_constraintWidth_percent="0.9" />
 
     <TextView
+        android:id="@+id/emailError"
+        android:visibility="invisible"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/email_error"
+        android:textColor="#FF0000"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.630"
+        app:layout_constraintWidth_percent="0.85" />
+
+    <TextView
         android:id="@+id/textViewPassword"
         android:layout_width="0dp"
         android:layout_height="43dp"
@@ -93,7 +110,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645"
+        app:layout_constraintVertical_bias="0.680"
         app:layout_constraintWidth_percent="0.9" />
 
     <EditText
@@ -114,7 +131,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.680"
+        app:layout_constraintVertical_bias="0.715"
         app:layout_constraintWidth_percent="0.9" />
 
     <ImageButton
@@ -133,29 +150,11 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.760"/>
-
-    <Button
-        android:id="@+id/emailButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/emailSignIn"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#62D2C3"
-        android:fontFamily="sans-serif"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835"
-        app:layout_constraintWidth_percent="1"/>
+        app:layout_constraintVertical_bias="0.805"/>
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/GetStartedButton"
+        android:id="@+id/LoginButton"
         android:layout_width="0dp"
         android:layout_height="63dp"
         android:backgroundTint="#64d4c4"

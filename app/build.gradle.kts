@@ -32,6 +32,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -45,16 +46,17 @@ dependencies {
     implementation(libs.annotation)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.preference)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
-    implementation(libs.play.services.auth)
-    implementation(libs.play.services.auth.v2100)
     implementation(libs.firebase.auth.v2230)
-    implementation(libs.androidx.credentials.v130)
-    implementation(libs.googleid.v110)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.google.firebase.auth)
+    //implementation(libs.credentials.v130)
+    implementation(libs.androidx.credentials.play.services.auth.v130)
     implementation(libs.googleid)
-    implementation(libs.androidx.credentials)
+    implementation("androidx.credentials:credentials:1.5.0")
 }
