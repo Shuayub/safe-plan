@@ -1,15 +1,12 @@
 package com.example.weatherapp;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-import static com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL;
-
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.credentials.Credential;
 import androidx.credentials.CredentialManager;
 import androidx.credentials.CredentialManagerCallback;
@@ -18,7 +15,6 @@ import androidx.credentials.GetCredentialRequest;
 import androidx.credentials.GetCredentialResponse;
 import androidx.credentials.exceptions.GetCredentialException;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,25 +27,44 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
-abstract public class GoogleSignIn extends Fragment {
+public class GoogleSignInFragment extends Fragment {
 
-    public Executor executor;
-    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    public interface GoogleSignInCallback {
+        void onGoogleSignInSuccess(FirebaseUser user);
+        void onGoogleSignInFailure(String reason);
+    }
+
+    private GoogleSignInCallback callback;
+
+    private FirebaseAuth mAuth;
+    private Executor executor;
     private CredentialManager credentialManager;
     private GetCredentialRequest request;
 
-    abstract public Context get_context();
+    public void setCallback(GoogleSignInCallback callback) {
+        this.callback = callback;
+    }
 
-    abstract public Activity get_activity();
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mAuth = FirebaseAuth.getInstance();
+        executor = Executors.newSingleThreadExecutor();
+    }
 
-    abstract public void onSuccess();
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        createRequest();
+    }
 
-    void performGoogleSignIn() {
+    public void performGoogleSignIn() {
         CancellationSignal cancellationSignal = new CancellationSignal();
 
         credentialManager.getCredentialAsync(
-                get_context(),
+                requireContext(),
                 request,
                 cancellationSignal,
                 executor,
@@ -57,7 +72,7 @@ abstract public class GoogleSignIn extends Fragment {
                     @Override
                     public void onResult(GetCredentialResponse result) {
                         // Switch to main thread for UI operations
-                        get_activity().runOnUiThread(new Runnable() {
+                        requireActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 handleSignIn(result.getCredential());
@@ -68,7 +83,7 @@ abstract public class GoogleSignIn extends Fragment {
                     @Override
                     public void onError(GetCredentialException e) {
                         // Switch to main thread for UI operations
-                        get_activity().runOnUiThread(new Runnable() {
+                        requireActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 // Check for specific error types
@@ -85,7 +100,7 @@ abstract public class GoogleSignIn extends Fragment {
                                     }
                                 }
 
-                                Toast.makeText(get_context(), errorMessage, Toast.LENGTH_LONG).show();
+                                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show();
                             }
                         });
                     }
@@ -93,8 +108,7 @@ abstract public class GoogleSignIn extends Fragment {
         );
     }
 
-    void createRequest() {
-        // Instantiate a Google sign-in request
+    private void createRequest() {
         GetGoogleIdOption googleIdOption = new GetGoogleIdOption.Builder()
                 .setFilterByAuthorizedAccounts(false)
                 .setServerClientId(getString(R.string.client_id))
@@ -105,37 +119,36 @@ abstract public class GoogleSignIn extends Fragment {
                 .addCredentialOption(googleIdOption)
                 .build();
 
-        credentialManager = CredentialManager.create(get_context());
+        credentialManager = CredentialManager.create(requireContext());
     }
 
     private void handleSignIn(Credential credential) {
-        // Check if credential is of type Google ID
         if (credential instanceof CustomCredential
-                && credential.getType().equals(TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)) {
+                && credential.getType().equals(GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)) {
             CustomCredential customCredential = (CustomCredential) credential;
-            // Create Google ID Token
             Bundle credentialData = customCredential.getData();
             GoogleIdTokenCredential googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credentialData);
-
-            // Sign in to Firebase with using the token
             firebaseAuthWithGoogle(googleIdTokenCredential.getIdToken());
         } else {
-            // Handle unexpected credential type
-            Toast.makeText(get_context(), "Unexpected credential type", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Unexpected credential type", Toast.LENGTH_SHORT).show();
+            if (callback != null) callback.onGoogleSignInFailure("Unexpected credential type");
         }
     }
 
     private void firebaseAuthWithGoogle(String idToken) {
-
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(get_activity(), new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            onSuccess();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (callback != null && user != null) {
+                                callback.onGoogleSignInSuccess(user);
+                            }
                         } else {
-                            Toast.makeText(get_context(), "Firebase authentication failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), "Firebase authentication failed", Toast.LENGTH_SHORT).show();
+                            if (callback != null) callback.onGoogleSignInFailure("Firebase authentication failed");
                         }
                     }
                 });

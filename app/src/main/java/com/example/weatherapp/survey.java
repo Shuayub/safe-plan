@@ -7,38 +7,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.databinding.FragmentSurveyBinding;
+import com.example.weatherapp.databinding.FragmentTipsBinding;
 
 
-public class survey extends Fragment {
+public class survey extends AppCompatActivity {
 
     private FragmentSurveyBinding binding;
     private SharedPreferences sharedPreferences;
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        binding = FragmentSurveyBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-
+        FragmentSurveyBinding binding = FragmentSurveyBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
 }

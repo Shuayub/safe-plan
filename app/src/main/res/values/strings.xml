@@ -20,7 +20,7 @@
     <string name="password">Password</string>
     <string name="password_example">************</string>
     <string name="ConfirmPassword">Confirm Password</string>
-    <string name="pinReg">4 or 6 digit Pin</string>
+    <string name="pinReg">Create a 4 or 6 digit Pin</string>
     <string name="pin_example">****</string>
     <string name="email_error">\u274C Please enter a valid email</string>
     <string name="password_error">\u274C Please enter a password</string>

@@ -19,16 +19,36 @@
             android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVER_API"
             android:value="true" />
 
-        <activity
-            android:name="com.example.weatherapp.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.WeatherApp">
+        <activity android:name="com.example.weatherapp.IntroActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.weatherapp.RegistrationPartOne.RegistrationPartOneActivity"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.VerifyEmailActivity"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.RegistrationPartTwoActivity"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.LoginEmail.LoginEmailActivity"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.LoginPinActivity"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.tips"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.survey"
+            android:exported="false">
+        </activity>
+
+
 
         <meta-data
             android:name="preloaded_fonts"
