@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SurveyActivity"
+            android:label="Safety Survey"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".TipsActivity"
+            android:label="Safety Tips"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

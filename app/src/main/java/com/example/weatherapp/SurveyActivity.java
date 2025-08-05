@@ -1,13 +1,13 @@
 package com.example.weatherapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,62 +16,63 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.weatherapp.databinding.FragmentSurveyBinding;
+public class SurveyActivity extends AppCompatActivity {
+    private static final String TAG = "SurveyActivity";
 
-public class Survey extends Fragment {
-    private static final String TAG = "SurveyFragment";
+    private LinearLayout surveyContainer;
+    private TextView pageIndicator;
+    private Button buttonSurvey;
 
-    private FragmentSurveyBinding binding;
     private SurveyViewModel viewModel;
     private int currentPage = 1;
     private JSONObject unifiedJson;
-    // Track UI elements for each question
     private final Map<Integer, View> questionViews = new HashMap<>();
     private final String[] currentPageQuestionTypes = new String[10];
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentSurveyBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_survey);
 
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        surveyContainer = findViewById(R.id.surveyContainer);
+        pageIndicator = findViewById(R.id.pageIndicator);
+        buttonSurvey = findViewById(R.id.buttonSurvey);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(SurveyViewModel.class);
+        viewModel = new ViewModelProvider(this).get(SurveyViewModel.class);
         loadUnifiedJson();
         loadPage(currentPage);
-        binding.buttonSurvey.setText("Next");
+        buttonSurvey.setText("Back");
 
-        binding.buttonSurvey.setOnClickListener(v -> handleNavigation());
+        buttonSurvey.setOnClickListener(v -> handleNavigation());
     }
+
     private void loadUnifiedJson() {
         try {
-            String json = loadJSONFromAsset(requireContext(), "questions_and_tips.json");
+            String json = loadJSONFromAsset(this);
             unifiedJson = new JSONObject(json);
         } catch (Exception e) {
             Log.e(TAG, "Error loading unified JSON", e);
-            Toast.makeText(requireContext(), "Error loading survey data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error loading survey data", Toast.LENGTH_SHORT).show();
         }
     }
     private void handleNavigation() {
         if (currentPage == 1) {
             // Validate required questions
             if (!validatePage()) {
-                Toast.makeText(requireContext(), "Please complete all required questions", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please complete all required questions", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -89,14 +90,14 @@ public class Survey extends Fragment {
             }
 
             loadPage(currentPage);
-            binding.buttonSurvey.setText("Next");
+            buttonSurvey.setText("Next");
 
         } else if (currentPage == 2) {
             if (!validatePage()) return;
             saveCurrentPageAnswers();
             currentPage = 5; // Skip to last page after safety questions
             loadPage(currentPage);
-            binding.buttonSurvey.setText("Submit");
+            buttonSurvey.setText("Submit");
 
         } else if (currentPage == 5) {
             if (!validatePage()) return;
@@ -106,14 +107,14 @@ public class Survey extends Fragment {
     }
 
     private void loadPage(int pageNumber) {
-        binding.surveyContainer.removeAllViews();
+        surveyContainer.removeAllViews();
         questionViews.clear();
 
         int jsonPageId = mapToJsonPageId(pageNumber);
         if(pageNumber == 5){
-            binding.pageIndicator.setText("Page 3 of 3");
+            pageIndicator.setText("Page 3 of 3");
         } else {
-            binding.pageIndicator.setText("Page " + pageNumber + " of 3");
+            pageIndicator.setText("Page " + pageNumber + " of 3");
         }
 
 
@@ -146,25 +147,25 @@ public class Survey extends Fragment {
                 String questionId = questionObj.getString("id");  // Get question ID
 
                 // Create question header
-                TextView questionView = new TextView(requireContext());
+                TextView questionView = new TextView(this);
                 questionView.setText((i + 1) + ". " + questionText);
                 questionView.setTextSize(18);
                 questionView.setTextColor(Color.BLACK);
                 questionView.setPadding(0, 24, 0, 16);
-                binding.surveyContainer.addView(questionView);
+                surveyContainer.addView(questionView);
 
                 // Create input based on type
                 View inputView = createInputView(type, questionObj, i);
                 inputView.setTag(questionId);  // Set tag to question ID
-                binding.surveyContainer.addView(inputView);
+                surveyContainer.addView(inputView);
                 questionViews.put(i, inputView);
             }
 
-            binding.surveyContainer.addView(binding.buttonSurvey);
+            surveyContainer.addView(buttonSurvey);
 
         } catch (Exception e) {
             Log.e(TAG, "Error loading page " + pageNumber, e);
-            Toast.makeText(requireContext(), "Error loading questions", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error loading questions", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -186,7 +187,7 @@ public class Survey extends Fragment {
         }
     }
     private View createInputView(String type, JSONObject questionObj, int index) throws Exception {
-        Context context = requireContext();
+        Context context = this;
 
         switch (type) {
             case "text":
@@ -207,7 +208,7 @@ public class Survey extends Fragment {
     }
 
     private EditText createTextInput(JSONObject questionObj, int index) throws JSONException {
-        EditText editText = new EditText(requireContext());
+        EditText editText = new EditText(this);
         editText.setHint(questionObj.optString("placeholder", "Enter your answer"));
         editText.setTag(questionObj.getString("id")); // Store question ID as tag
 
@@ -221,7 +222,7 @@ public class Survey extends Fragment {
     }
 
     private LinearLayout createRadioWithOtherInput(JSONObject questionObj, int index) throws Exception {
-        Context context = requireContext();
+        Context context = this;
         LinearLayout container = new LinearLayout(context);
         container.setOrientation(LinearLayout.VERTICAL);
 
@@ -281,7 +282,7 @@ public class Survey extends Fragment {
     }
 
     private Spinner createDropdownInput(JSONObject questionObj, int index) throws Exception {
-        Spinner spinner = new Spinner(requireContext());
+        Spinner spinner = new Spinner(this);
         JSONArray options = questionObj.getJSONArray("options");
 
         // Convert JSON array to string array
@@ -291,7 +292,7 @@ public class Survey extends Fragment {
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireContext(),
+                this,
                 android.R.layout.simple_spinner_item,
                 items
         );
@@ -314,7 +315,7 @@ public class Survey extends Fragment {
     }
 
     private LinearLayout createCheckboxInput(JSONObject questionObj, int index) throws Exception {
-        Context context = requireContext();
+        Context context = this;
         LinearLayout container = new LinearLayout(context);
         container.setOrientation(LinearLayout.VERTICAL);
 
@@ -346,14 +347,14 @@ public class Survey extends Fragment {
     }
 
     private RadioGroup createRadioInput(JSONObject questionObj, int index) throws Exception {
-        RadioGroup radioGroup = new RadioGroup(requireContext());
+        RadioGroup radioGroup = new RadioGroup(this);
         radioGroup.setOrientation(RadioGroup.VERTICAL);
         radioGroup.setTag(questionObj.getString("id")); // Store question ID as tag
 
         JSONArray options = questionObj.getJSONArray("options");
         for (int j = 0; j < options.length(); j++) {
             String option = options.getString(j);
-            RadioButton radioButton = new RadioButton(requireContext());
+            RadioButton radioButton = new RadioButton(this);
             radioButton.setText(option);
             radioGroup.addView(radioButton);
         }
@@ -456,11 +457,11 @@ public class Survey extends Fragment {
                         JSONArray questions = currentPageObj.getJSONArray("questions");
                         JSONObject question = questions.getJSONObject(i);
 
-                        Toast.makeText(requireContext(),
+                        Toast.makeText(this,
                                 "Please answer: " + question.getString("question"),
                                 Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
-                        Toast.makeText(requireContext(),
+                        Toast.makeText(this,
                                 "Please answer question " + (i+1),
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -500,21 +501,23 @@ public class Survey extends Fragment {
         }
 
         saveCurrentPageAnswers(); // Ensure final page answers are saved
-        Tips.generateAndSaveTips(requireContext(), viewModel, unifiedJson);
+        Tips.generateAndSaveTips(this, viewModel, unifiedJson);
+        Toast.makeText(this, "Survey submitted!", Toast.LENGTH_SHORT).show();
 
-        Log.d(TAG, "Survey Results:\n" + surveyResults);
-        Toast.makeText(requireContext(), "Survey submitted!", Toast.LENGTH_SHORT).show();
-        NavHostFragment.findNavController(this).navigate(R.id.action_SurveyFragment_to_FirstFragment);
+        // Start TipsActivity instead of navigating to fragment
+        Intent intent = new Intent(this, TipsActivity.class);
+        startActivity(intent);
+        finish(); // Close this activity
     }
 
-    private String loadJSONFromAsset(Context context, String filename) {
-        try (InputStream is = context.getAssets().open(filename)) {
+    private String loadJSONFromAsset(Context context) {
+        try (InputStream is = context.getAssets().open("questions_and_tips.json")) {
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             return new String(buffer, StandardCharsets.UTF_8);
         } catch (Exception e) {
-            Log.e(TAG, "Error loading JSON: " + filename, e);
+            Log.e(TAG, "Error loading JSON: " + "questions_and_tips.json", e);
             return null;
         }
     }
