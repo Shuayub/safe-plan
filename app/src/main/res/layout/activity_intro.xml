@@ -73,6 +73,7 @@
         app:layout_constraintVertical_bias="0.765"
         app:layout_constraintWidth_percent="0.725" />
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="237dp"
@@ -85,5 +86,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25"
         app:layout_constraintWidth_percent="1" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -90,6 +90,7 @@ play-services-auth-v2040 = { module = "com.google.android.gms:play-services-auth
 #noinspection SimilarGradleDependency
 play-services-auth-v2100 = { module = "com.google.android.gms:play-services-auth", version.ref = "googlePlayServicesAuth" }
 androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
+firebase-inappmessaging = "com.google.firebase:firebase-inappmessaging-display:20.3.2"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

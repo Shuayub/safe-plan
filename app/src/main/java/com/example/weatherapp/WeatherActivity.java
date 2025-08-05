@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import okhttp3.*;
 
+/**
+ * WeatherActivity displays current weather information for a given city.
+ * Implements OnClickListener to handle search button and input field actions.
+ */
 public class WeatherActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView temperatureText, locationText, weatherStatText, feelsLikeText, weatherText, minTempText, maxTempText;
@@ -151,7 +155,7 @@ public class WeatherActivity extends AppCompatActivity implements View.OnClickLi
                 String body = r.body().string();
                 if (!r.isSuccessful()) {
                     runOnUiThread(() ->
-                            temperatureText.setText("Temp Error: " + r.code()));
+                            temperatureText.setText("Temp Error"));
                     return;
                 }
                 try {
