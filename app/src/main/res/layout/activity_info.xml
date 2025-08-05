@@ -5,7 +5,8 @@
     android:id="@+id/info_layout"
     android:background="@color/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <ScrollView
         android:id="@+id/info_scroll"
@@ -13,6 +14,7 @@
         android:layout_height="0dp"
         android:padding="16dp"
         android:fillViewport="true"
+        android:clipToPadding="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,10 +55,9 @@
                         android:layout_height="wrap_content" />
 
                     <!-- Placeholder for list or info -->
-                    <TextView
-                        android:text="No contacts added."
-                        android:textColor="@color/gray"
-                        android:layout_marginTop="4dp"
+                    <LinearLayout
+                        android:id="@+id/contact_list_layout"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -94,12 +95,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:text="No documents uploaded."
-                        android:textColor="@color/gray"
+                    <LinearLayout
+                        android:id="@+id/document_list_layout"
+                        android:orientation="vertical"
                         android:layout_marginTop="4dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content">
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/add_document_button"
@@ -134,10 +136,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:text="No medications listed."
-                        android:textColor="@color/gray"
-                        android:layout_marginTop="4dp"
+                    <LinearLayout
+                        android:id="@+id/medication_list_layout"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -174,10 +175,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:text="No locations saved."
-                        android:textColor="@color/gray"
-                        android:layout_marginTop="4dp"
+                    <LinearLayout
+                        android:id="@+id/location_list_layout"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

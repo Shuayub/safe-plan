@@ -5,5 +5,5 @@
     <color name="background">#EEEEEE</color>
     <color name="primary">#62D2C3</color>
     <color name="gray">#AAAAAA</color>
-
+    <color name="bright_red">#FF4444</color>
 </resources>
