@@ -8,179 +8,113 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Tips {
     private static final String TIPS_FILE = "tips.json";
-    private static final String ALL_TIPS_FILE = "user_tips.json";
     private static final int MAX_TIPS = 20;
 
-    public static void generateAndSaveTips(Context context, SurveyViewModel viewModel) {
+    public static void generateAndSaveTips(Context context, SurveyViewModel viewModel, JSONObject unifiedJson) {
         resetTipsFile(context);
-
-        List<String> tipsList = selectPersonalizedTips(context, viewModel);
+        List<String> tipsList = selectPersonalizedTips(context, viewModel, unifiedJson);
         saveTipsToJson(context, tipsList);
     }
 
-    private static List<String> selectPersonalizedTips(Context context, SurveyViewModel viewModel) {
+    private static List<String> selectPersonalizedTips(Context context, SurveyViewModel viewModel, JSONObject unifiedJson) {
         List<String> selectedTips = new ArrayList<>();
-        List<JSONObject> allTips = loadAllTips(context);
-        Map<String, String> answersMap = new HashMap<>();
+        if (unifiedJson == null) return selectedTips;
 
-        Log.d("TIP_DEBUG", "Loaded " + allTips.size() + " tips");
-        Log.d("TIP_DEBUG", "User answers: " + answersMap.toString());
-        // Create answers map with page/question keys
-        int page = 1;
-        for (int q = 0; q < 10; q++) {
-            String answer = viewModel.getPageAnswer(page, q);
-            if (answer != null) {
-                answersMap.put("page" + page + "_q" + q, answer);
+        try {
+            JSONArray allTips = unifiedJson.getJSONArray("tips");
+            String page1Choice = viewModel.getPage1Choice();
+
+            // Determine which section to include based on P1Q1 answer
+            String includedSection = null;
+            if (page1Choice != null) {
+                if (page1Choice.equals("Still in a relationship")) {
+                    includedSection = "P2a";
+                } else if (page1Choice.equals("Planning to leave")) {
+                    includedSection = "P2b";
+                } else if (page1Choice.equals("Post-separation")) {
+                    includedSection = "P2c";
+                }
             }
-        }
-        if(viewModel.getPageAnswer(page, 0).equals("Still in a relationship")){
-            page = 2;
-        } else if (viewModel.getPageAnswer(page, 0).equals("Planning to leave")){
-            page = 3;
-        } else if (viewModel.getPageAnswer(page, 0).equals("Post-separation")){
-            page = 4;
-        }
-        for (int q = 0; q < 10; q++) {
-            String answer = viewModel.getPageAnswer(page, q);
-            if (answer != null) {
-                answersMap.put("page" + page + "_q" + q, answer);
-            }
-        }
 
-        String answer = viewModel.getPageAnswer(5, 0);
-        if (answer != null) {
-            answersMap.put("page" + 5 + "_q" + 0, answer);
-        }
+            for (int i = 0; i < allTips.length(); i++) {
+                JSONObject tip = allTips.getJSONObject(i);
+                String tipId = tip.getString("id");
 
-        // Evaluate each tip
-        for (JSONObject tip : allTips) {
-            try {
-                Log.d("TIP_EVAL", "Checking tip: " + tip.getString("id"));
-                if (evaluateTipConditions(tip, answersMap)) {
+                // Skip tips from other sections (2a/2b/2c)
+                if (includedSection != null && tipId.startsWith("P2") && !tipId.startsWith(includedSection)) {
+                    continue;
+                }
+
+                if (evaluateTipConditions(tip, viewModel)) {
                     String tipText = tip.getString("text");
-                    Log.d("TIP_MATCH", "MATCHED: " + tip.getString("id"));
-                    // Apply replacements if any
-                    if (tip.has("conditions") && tip.getJSONObject("conditions").has("replacements")) {
-                        JSONArray replacements = tip.getJSONObject("conditions")
-                                .getJSONArray("replacements");
-                        tipText = applyReplacements(tipText, replacements, answersMap);
+
+                    // Apply replacements
+                    if (tip.has("placeholder") && tip.has("placeholder_source")) {
+                        String placeholder = tip.getString("placeholder");
+                        String sourceId = tip.getString("placeholder_source");
+                        String replacement = viewModel.getAnswerByQuestionId(sourceId);
+
+                        if (replacement != null) {
+                            tipText = tipText.replace(placeholder, replacement);
+                        }
                     }
 
                     selectedTips.add(tipText);
                     if (selectedTips.size() >= MAX_TIPS) break;
-
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
         return selectedTips;
     }
 
-    private static boolean evaluateTipConditions(JSONObject tip, Map<String, String> answers)
-            throws JSONException {
+    private static boolean evaluateTipConditions(JSONObject tip, SurveyViewModel viewModel) {
+        try {
+            String questionId = tip.getString("question_id");
+            String userAnswer = viewModel.getAnswerByQuestionId(questionId);
 
-        if (!tip.has("conditions")) return false;
-        JSONObject conditions = tip.getJSONObject("conditions");
-        boolean conditionMet = true;
-
-        // Check trigger question
-        if (conditions.has("triggerQuestion")) {
-            JSONObject trigger = conditions.getJSONObject("triggerQuestion");
-            int page = trigger.getInt("page");
-            int question = trigger.getInt("question");
-            String answerKey = "page" + page + "_q" + question;
-            String actualAnswer = answers.get(answerKey);
-
-            if (actualAnswer == null || actualAnswer.isEmpty()) {
+            if (userAnswer == null || userAnswer.isEmpty()) {
                 return false;
             }
 
-            // Check for specific answers if defined
-            if (trigger.has("answers")) {
-                JSONArray requiredAnswers = trigger.getJSONArray("answers");
-                boolean matchFound = true;
+            if (tip.has("condition")) {
+                String requiredAnswer = tip.getString("condition");
 
-                // Handle checkbox answers (comma-separated)
-                String[] actualParts = actualAnswer.split(",");
-
-                for (int i = 0; i < requiredAnswers.length(); i++) {
-                    String required = requiredAnswers.getString(i).trim();
-                    boolean foundThisAnswer = false;
-
-                    for (String part : actualParts) {
-                        if (part.trim().equals(required)) {
-                            foundThisAnswer = true;
-                            break;
-                        }
-                    }
-
-                    if (!foundThisAnswer) {
-                        matchFound = false;
-                        break;
+                // Special handling for radio-with-other questions
+                if (questionId.equals("P1Q5") || questionId.equals("P2bQ4") ||
+                        questionId.equals("P2cQ2") || questionId.equals("P2cQ3")) {
+                    if (requiredAnswer.equals("Yes")) {
+                        return !userAnswer.equals("No") && !userAnswer.equals("Yes");
+                    } else if (requiredAnswer.equals("No")) {
+                        return userAnswer.equals("No");
                     }
                 }
-                conditionMet = conditionMet && matchFound;
+
+                // Default handling for other questions
+                if (userAnswer.contains(",")) {
+                    for (String part : userAnswer.split(",")) {
+                        if (part.trim().equals(requiredAnswer)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                } else {
+                    return userAnswer.equals(requiredAnswer);
+                }
             }
-        }
-
-        return conditionMet;
-    }
-
-    private static String applyReplacements(String tipText, JSONArray replacements,
-                                            Map<String, String> answers) throws JSONException {
-
-        for (int i = 0; i < replacements.length(); i++) {
-            JSONObject replacement = replacements.getJSONObject(i);
-            String placeholder = replacement.getString("placeholder");
-
-            JSONObject question = replacement.getJSONObject("question");
-            int page = question.getInt("page");
-            int qIndex = question.getInt("question");
-
-            String answerKey = "page" + page + "_q" + qIndex;
-            String answerValue = answers.get(answerKey);
-
-            if (answerValue != null) {
-                tipText = tipText.replace(placeholder, answerValue);
-            } else {
-                tipText = tipText.replace(placeholder, "[unknown]"); // Avoid broken text
-            }
-        }
-        return tipText;
-    }
-
-    private static List<JSONObject> loadAllTips(Context context) {
-        List<JSONObject> tipsList = new ArrayList<>();
-        try {
-            InputStream is = context.getAssets().open(ALL_TIPS_FILE);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer, StandardCharsets.UTF_8);
-
-            JSONArray tipsArray = new JSONArray(json);
-            for (int i = 0; i < tipsArray.length(); i++) {
-                tipsList.add(tipsArray.getJSONObject(i));
-            }
-        } catch (IOException | JSONException e) {
+            return true;
+        } catch (JSONException e) {
             e.printStackTrace();
+            return false;
         }
-        return tipsList;
     }
-
     private static void saveTipsToJson(Context context, List<String> tipsList) {
         try {
             JSONObject json = new JSONObject();
@@ -189,33 +123,10 @@ public class Tips {
 
             try (FileOutputStream fos = context.openFileOutput(TIPS_FILE, Context.MODE_PRIVATE)) {
                 fos.write(json.toString().getBytes(StandardCharsets.UTF_8));
-            } // Auto-close here
+            }
         } catch (Exception e) {
             Log.e("Tips", "Save failed", e);
         }
-    }
-
-    public static List<String> getSavedTips(Context context) {
-        List<String> tips = new ArrayList<>();
-        try {
-            // Read from internal storage
-            InputStream is = context.openFileInput(TIPS_FILE);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String jsonStr = new String(buffer, StandardCharsets.UTF_8);
-
-            JSONObject json = new JSONObject(jsonStr);
-            JSONArray tipsArray = json.getJSONArray("tips");
-
-            for (int i = 0; i < tipsArray.length(); i++) {
-                tips.add(tipsArray.getString(i));
-            }
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-        }
-        return tips;
     }
     private static void resetTipsFile(Context context) {
         try {
