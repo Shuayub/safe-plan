@@ -1,54 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/reminderLayout"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA"
-    tools:context=".ReminderFragment">
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FAF9F9">
 
-    <LinearLayout
+    <!--- Button to add a new reminder -->
+    <Button
+        android:id="@+id/addReminderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="24dp"
-        android:layout_gravity="center">
+        android:text="Add Reminder"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#6A4CAC"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:layout_gravity="start"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp" />
 
-        <TextView
-            android:id="@+id/titleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set Plan Review Reminder"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#212121"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:id="@+id/frequencyLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Choose Reminder Frequency"
-            android:textSize="16sp"
-            android:textColor="#424242"
-            android:layout_marginBottom="8dp" />
-
-        <Spinner
-        android:id="@+id/frequencySpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/reminder_frequencies" />
-
-        <Button
-            android:id="@+id/setReminderButton"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Set Reminder"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:textColor="#FFFFFF"
-            android:padding="12dp" />
-    </LinearLayout>
-</FrameLayout>
+    <!-- RecyclerView to show reminders -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reminderRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
+</LinearLayout>
