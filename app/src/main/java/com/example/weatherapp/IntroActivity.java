@@ -28,7 +28,7 @@ public class IntroActivity extends AppCompatActivity {
             boolean createdAccount = sharedPreferences.getBoolean("createdAccount", false);
             boolean createdPin = sharedPreferences.getBoolean("createdPin", false);
             Intent intent;
-            if (createdAccount && createdPin) {
+            if (createdPin) {
                 intent = new Intent(IntroActivity.this, LoginPinActivity.class);
             } else if (createdAccount){
                 intent = new Intent(IntroActivity.this, LoginEmailActivityView.class);

@@ -18,7 +18,7 @@ public class RegistrationPartOneActivityModel implements GoogleSignInFragment.Go
 
     public RegistrationPartOneActivityModel(RegistrationPartOneActivityView view) {
         mAuth = FirebaseAuth.getInstance();
-        view.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view);
+        view.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.getBaseContext());
         view.prefEditor = view.sharedPreferences.edit();
         this.view = view;
 

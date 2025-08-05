@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.preference)
+    implementation(libs.activity)
     testImplementation(libs.junit)
     testImplementation ("org.mockito:mockito-core:5.11.0")
     testImplementation("org.robolectric:robolectric:4.11.1")
@@ -60,4 +61,7 @@ dependencies {
     implementation(libs.androidx.credentials.play.services.auth.v130)
     implementation(libs.googleid)
     implementation("androidx.credentials:credentials:1.5.0")
+    implementation(libs.okhttp)
+    implementation("androidx.cardview:cardview:1.0.0")
+
 }
