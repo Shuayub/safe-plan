@@ -13,19 +13,6 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.weatherapp.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <action
-            android:id="@+id/action_SecondFragment_to_SurveyFragment"
             app:destination="@id/fragment_survey" />
     </fragment>
     <fragment
@@ -43,7 +30,7 @@
     <fragment
         android:id="@+id/fragment_survey"
         android:name="com.example.weatherapp.Survey"
-        android:label="Third Fragment"
+        android:label="Survey"
         tools:layout="@layout/fragment_survey">
         <action
             android:id="@+id/action_SurveyFragment_to_FirstFragment"
