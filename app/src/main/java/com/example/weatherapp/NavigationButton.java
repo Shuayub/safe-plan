@@ -24,17 +24,10 @@ public class NavigationButton {
              else if (itemId == R.id.nav_reminders && !(activity instanceof ReminderActivity)) {
                 intent = new Intent(activity, ReminderActivity.class);
              }
-
-            /*
-            if (itemId == R.id.nav_plan && !(activity instanceof PlanActivity)) {
-                intent = new Intent(activity, PlanActivity.class);
-            } else if (itemId == R.id.nav_info && !(activity instanceof InfoActivity)) {
-                intent = new Intent(activity, InfoActivity.class);
-            } else if (itemId == R.id.nav_reminders && !(activity instanceof RemindersActivity)) {
-                intent = new Intent(activity, RemindersActivity.class);
+             else if (itemId == R.id.nav_plan && !(activity instanceof TipsActivity)) {
+                intent = new Intent(activity, TipsActivity.class);
             }
 
-*/
             if (intent != null) {
                 activity.startActivity(intent);
                 activity.overridePendingTransition(0, 0);

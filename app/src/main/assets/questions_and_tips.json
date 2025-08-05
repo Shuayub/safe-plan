@@ -1,0 +1,323 @@
+{
+  "survey": {
+    "pages": [
+      {
+        "id": 1,
+        "title": "Basic Information",
+        "questions": [
+          {
+            "id": "P1Q1",
+            "type": "radio",
+            "question": "Which best describes your situation?",
+            "options": ["Still in a relationship", "Planning to leave", "Post-separation"]
+          },
+          {
+            "id": "P1Q2",
+            "type": "dropdown",
+            "question": "What city do you live in?",
+            "options": ["Toronto", "Vancouver", "Ottawa", "Edmonton", "Calgary"]
+          },
+          {
+            "id": "P1Q3",
+            "type": "text",
+            "question": "Which room in your home feels the safest if you need to get away quickly?",
+            "placeholder": "Enter your description here"
+          },
+          {
+            "id": "P1Q4",
+            "type": "radio",
+            "question": "Who do you live with?",
+            "options": ["Family", "Roommates", "Alone", "Partner"]
+          },
+          {
+            "id": "P1Q5",
+            "type": "radio_with_other",
+            "question": "Do you have children?",
+            "options": ["No", "Yes"],
+            "other_placeholder": "Please enter a code word: "
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Current Safety Assessment",
+        "questions": [
+          {
+            "id": "P2aQ1",
+            "type": "checkbox",
+            "question": "Which form(s) of abuse are you experiencing? (Select multiple)",
+            "options": ["Physical", "Emotional", "Financial", "Other"]
+          },
+          {
+            "id": "P2aQ2",
+            "type": "radio",
+            "question": "Are you recording the incidents (dates, times, details)?",
+            "options": ["No", "Yes"]
+          },
+          {
+            "id": "P2aQ3",
+            "type": "text",
+            "question": "Name one person you can call immediately in an emergency.",
+            "placeholder": "Enter your description here"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Exit Planning",
+        "questions": [
+          {
+            "id": "P2bQ1",
+            "type": "text",
+            "question": "When do you plan to leave?",
+            "placeholder": "Enter your description here"
+          },
+          {
+            "id": "P2bQ2",
+            "type": "radio",
+            "question": "Do you have a go-bag packed with essentials?",
+            "options": ["No", "Yes"]
+          },
+          {
+            "id": "P2bQ3",
+            "type": "text",
+            "question": "Where do you keep emergency cash or cards?",
+            "placeholder": "Enter your description here"
+          },
+          {
+            "id": "P2bQ4",
+            "type": "radio_with_other",
+            "question": "Have you identified a safe place to stay?",
+            "options": ["No", "Yes"],
+            "other_placeholder": "Please specify"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Post-Separation Safety",
+        "questions": [
+          {
+            "id": "P2cQ1",
+            "type": "radio",
+            "question": "Has the abuser continued any contact?",
+            "options": ["No", "Yes"]
+          },
+          {
+            "id": "P2cQ2",
+            "type": "radio_with_other",
+            "question": "Do you have a protection order? If yes, which type?",
+            "options": ["No", "Yes"],
+            "other_placeholder": "Please specify"
+          },
+          {
+            "id": "P2cQ3",
+            "type": "radio_with_other",
+            "question": "Are you using any safety tools (cameras, door alarms)?",
+            "options": ["No", "Yes"],
+            "other_placeholder": "Please specify"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Support Needs",
+        "questions": [
+          {
+            "id": "P3Q1",
+            "type": "radio",
+            "question": "Which type of support would help most right now?",
+            "options": ["Counselling", "Legal aid", "Financial guidance", "Co-parenting resources"]
+          }
+        ]
+      }
+    ]
+  },
+  "tips": [
+    {
+      "id": "P1Q1a",
+      "question_id": "P1Q1",
+      "text": "Keep this plan updated, and remember you can always reach out if things escalate.",
+      "condition": "Still in a relationship"
+    },
+    {
+      "id": "P1Q1b",
+      "question_id": "P1Q1",
+      "text": "Start packing small items now so you're ready when you decide to leave.",
+      "condition": "Planning to leave"
+    },
+    {
+      "id": "P1Q1c",
+      "question_id": "P1Q1",
+      "text": "It's normal to feel unsettled, refer back to this plan whenever you need a safety reminder.",
+      "condition": "Post-separation"
+    },
+    {
+      "id": "P1Q2",
+      "question_id": "P1Q2",
+      "text": "Save the local support numbers for {city} in your phone's speed-dial so you can call immediately if you need help.",
+      "placeholder": "{city}",
+      "placeholder_source": "P1Q2"
+    },
+    {
+      "id": "P1Q3",
+      "question_id": "P1Q3",
+      "text": "Keep your essentials (phone, keys, and a small flashlight) in {safe_room} so you can grab them instantly when you need to leave.",
+      "placeholder": "{safe_room}",
+      "placeholder_source": "P1Q3"
+    },
+    {
+      "id": "P1Q4a",
+      "question_id": "P1Q4",
+      "text": "Let those you live with: Family know your safe room and cue-word so they can support you in an emergency.",
+      "condition": "Family"
+    },
+    {
+      "id": "P1Q4b",
+      "question_id": "P1Q4",
+      "text": "Let those you live with: Roommates know your safe room and cue-word so they can support you in an emergency.",
+      "condition": "Roommates"
+    },
+    {
+      "id": "P1Q4c",
+      "question_id": "P1Q4",
+      "text": "Since you live alone, identify a trusted neighbor or friend and share your safe room location with them.",
+      "condition": "Alone"
+    },
+    {
+      "id": "P1Q4d",
+      "question_id": "P1Q4",
+      "text": "Because you live with your partner, keep your safety plan hidden (in {safe_room}), and consider storing a digital copy in a password-protected note they won't see.",
+      "condition": "Partner",
+      "placeholder": "{safe_room}",
+      "placeholder_source": "P1Q3"
+    },
+    {
+      "id": "P1Q5a",
+      "question_id": "P1Q5",
+      "text": "Practice your safety plan with your children so that when they hear {code_word}, they know exactly what to do.",
+      "condition": "Yes",
+      "placeholder": "{code_word}",
+      "placeholder_source": "P1Q5"
+    },
+    {
+      "id": "P1Q5b",
+      "question_id": "P1Q5",
+      "text": "Even without children, it helps to identify a second safe space in your home.",
+      "condition": "No"
+    },
+    {
+      "id": "P2aQ1",
+      "question_id": "P2aQ1",
+      "text": "If you face {abuse_type} abuse, remember you don't have to face it alone. Reach out to your emergency contact right away.",
+      "placeholder": "{abuse_type}",
+      "placeholder_source": "P2aQ1"
+    },
+    {
+      "id": "P2aQ2a",
+      "question_id": "P2aQ2",
+      "text": "Log each incident (date, time, and a brief note) so you have clear records if needed later.",
+      "condition": "Yes"
+    },
+    {
+      "id": "P2aQ2b",
+      "question_id": "P2aQ2",
+      "text": "Even brief notes on your phone can be helpful. Start logging today.",
+      "condition": "No"
+    },
+    {
+      "id": "P2aQ3",
+      "question_id": "P2aQ3",
+      "text": "Save {contact_name} in your phone under a code-word so you can quietly call them when you need help.",
+      "placeholder": "{contact_name}",
+      "placeholder_source": "P2aQ3"
+    },
+    {
+      "id": "P2bQ1",
+      "question_id": "P2bQ1",
+      "text": "Set a real target {leave_timing} and pack one essential item each day until you're ready.",
+      "placeholder": "{leave_timing}",
+      "placeholder_source": "P2bQ1"
+    },
+    {
+      "id": "P2bQ2a",
+      "question_id": "P2bQ2",
+      "text": "Great! Keep your go-bag in a hidden spot so you can grab it quickly.",
+      "condition": "Yes"
+    },
+    {
+      "id": "P2bQ2b",
+      "question_id": "P2bQ2",
+      "text": "Pack a simple go-bag today with essentials like your ID, some cash, and a charger.",
+      "condition": "No"
+    },
+    {
+      "id": "P2bQ3",
+      "question_id": "P2bQ3",
+      "text": "Stash some cash and a spare card in {money_location}, a spot your partner won't suspect.",
+      "placeholder": "{money_location}",
+      "placeholder_source": "P2bQ3"
+    },
+    {
+      "id": "P2bQ4a",
+      "question_id": "P2bQ4",
+      "text": "Make sure {temp_shelter} knows you may arrive unexpectedly and how to contact you.",
+      "condition": "Yes",
+      "placeholder": "{temp_shelter}",
+      "placeholder_source": "P2bQ4"
+    },
+    {
+      "id": "P2bQ4b",
+      "question_id": "P2bQ4",
+      "text": "Reach out to Victim Services Toronto or a trusted friend now to secure a shelter option before you leave.",
+      "condition": "No"
+    },
+    {
+      "id": "P2cQ1a",
+      "question_id": "P2cQ1",
+      "text": "Since you've heard from them, stay vigilant and keep your protection order handy if you have one.",
+      "condition": "Yes"
+    },
+    {
+      "id": "P2cQ1b",
+      "question_id": "P2cQ1",
+      "text": "Even without contact, keep your doors locked and your phone on in case you need to call 911.",
+      "condition": "No"
+    },
+    {
+      "id": "P2cQ2a",
+      "question_id": "P2cQ2",
+      "text": "Carry your {legal_order} at all times and share copies with anyone who needs to know.",
+      "condition": "Yes",
+      "placeholder": "{legal_order}",
+      "placeholder_source": "P2cQ2"
+    },
+    {
+      "id": "P2cQ2b",
+      "question_id": "P2cQ2",
+      "text": "Consider applying for a protection order; it can help deter unwanted contact.",
+      "condition": "No"
+    },
+    {
+      "id": "P2cQ3a",
+      "question_id": "P2cQ3",
+      "text": "Make sure your {equipment} is in working order and placed where you'll notice it.",
+      "condition": "Yes",
+      "placeholder": "{equipment}",
+      "placeholder_source": "P2cQ3"
+    },
+    {
+      "id": "P2cQ3b",
+      "question_id": "P2cQ3",
+      "text": "Consider installing a simple door alarm or camera to alert you to unexpected entry.",
+      "condition": "No"
+    },
+    {
+      "id": "P3Q1",
+      "question_id": "P3Q1",
+      "text": "Reach out to {support_choice} - they can offer the specialized help you need right now.",
+      "placeholder": "{support_choice}",
+      "placeholder_source": "P3Q1"
+    }
+  ]
+}
