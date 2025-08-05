@@ -16,18 +16,24 @@ public class NavigationButton {
             int itemId = item.getItemId();
             Intent intent = null;
 
-            if (itemId == R.id.nav_info && !(activity instanceof InfoActivity))
+            if (itemId == R.id.nav_info && !(activity instanceof InfoActivity)){
                 intent = new Intent(activity, InfoActivity.class);
-/*
+            } else if (itemId == R.id.nav_support && !(activity instanceof SupportActivity)) {
+                intent = new Intent(activity, SupportActivity.class);
+            }
+             else if (itemId == R.id.nav_reminders && !(activity instanceof ReminderActivity)) {
+                intent = new Intent(activity, ReminderActivity.class);
+             }
+
+            /*
             if (itemId == R.id.nav_plan && !(activity instanceof PlanActivity)) {
                 intent = new Intent(activity, PlanActivity.class);
             } else if (itemId == R.id.nav_info && !(activity instanceof InfoActivity)) {
                 intent = new Intent(activity, InfoActivity.class);
-            } else if (itemId == R.id.nav_support && !(activity instanceof SupportFragment)) {
-                intent = new Intent(activity, SupportFragment.class);
             } else if (itemId == R.id.nav_reminders && !(activity instanceof RemindersActivity)) {
                 intent = new Intent(activity, RemindersActivity.class);
             }
+
 */
             if (intent != null) {
                 activity.startActivity(intent);
