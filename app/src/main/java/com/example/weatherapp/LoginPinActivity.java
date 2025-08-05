@@ -10,7 +10,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
-import com.example.weatherapp.LoginEmail.LoginEmailActivity;
+import com.example.weatherapp.LoginEmail.LoginEmailActivityView;
 import com.example.weatherapp.databinding.ActivityLoginPinBinding;
 
 public class LoginPinActivity extends AppCompatActivity {
@@ -50,7 +50,7 @@ public class LoginPinActivity extends AppCompatActivity {
         });
 
         binding.emailSignInButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginPinActivity.this, LoginEmailActivity.class);
+            Intent intent = new Intent(LoginPinActivity.this, LoginEmailActivityView.class);
             startActivity(intent);
         });
     }

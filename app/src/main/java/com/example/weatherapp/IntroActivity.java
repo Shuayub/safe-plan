@@ -7,8 +7,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
-import com.example.weatherapp.LoginEmail.LoginEmailActivity;
-import com.example.weatherapp.RegistrationPartOne.RegistrationPartOneActivity;
+import com.example.weatherapp.LoginEmail.LoginEmailActivityView;
+import com.example.weatherapp.RegistrationPartOne.RegistrationPartOneActivityView;
 import com.example.weatherapp.databinding.ActivityIntroBinding;
 
 public class IntroActivity extends AppCompatActivity {
@@ -31,10 +31,10 @@ public class IntroActivity extends AppCompatActivity {
             if (createdAccount && createdPin) {
                 intent = new Intent(IntroActivity.this, LoginPinActivity.class);
             } else if (createdAccount){
-                intent = new Intent(IntroActivity.this, LoginEmailActivity.class);
+                intent = new Intent(IntroActivity.this, LoginEmailActivityView.class);
             }
             else {
-                intent = new Intent(IntroActivity.this, RegistrationPartOneActivity.class);
+                intent = new Intent(IntroActivity.this, RegistrationPartOneActivityView.class);
             }
             startActivity(intent);
             finish();

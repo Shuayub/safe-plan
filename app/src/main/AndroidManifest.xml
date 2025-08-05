@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.weatherapp.RegistrationPartOne.RegistrationPartOneActivity"
+        <activity android:name="com.example.weatherapp.RegistrationPartOne.RegistrationPartOneActivityView"
             android:exported="false">
         </activity>
         <activity android:name="com.example.weatherapp.VerifyEmailActivity"
@@ -35,7 +35,7 @@
         <activity android:name="com.example.weatherapp.RegistrationPartTwoActivity"
             android:exported="false">
         </activity>
-        <activity android:name="com.example.weatherapp.LoginEmail.LoginEmailActivity"
+        <activity android:name="com.example.weatherapp.LoginEmail.LoginEmailActivityView"
             android:exported="false">
         </activity>
         <activity android:name="com.example.weatherapp.LoginPinActivity"

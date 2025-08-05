@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.weatherapp.LoginEmail.LoginEmailActivity;
+import com.example.weatherapp.LoginEmail.LoginEmailActivityView;
 import com.example.weatherapp.databinding.ActivityVerifyEmailBinding;
 
 public class VerifyEmailActivity extends AppCompatActivity {
@@ -19,7 +19,7 @@ public class VerifyEmailActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.LoginButton.setOnClickListener(v -> {
-            Intent intent = new Intent(VerifyEmailActivity.this, LoginEmailActivity.class);
+            Intent intent = new Intent(VerifyEmailActivity.this, LoginEmailActivityView.class);
             startActivity(intent);
             finish(); // optional: prevents going back to verify screen
         });
