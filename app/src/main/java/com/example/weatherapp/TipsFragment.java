@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,25 +34,28 @@ public class TipsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView tipsContent = view.findViewById(R.id.tipsContentTextView);
+        RecyclerView recyclerView = view.findViewById(R.id.tipsRecyclerView);
         Button backButton = view.findViewById(R.id.actionButton);
+        TextView emptyView = view.findViewById(R.id.emptyTextView); // Optional: Add for empty state
 
-        // Load and display tips
         List<String> tips = loadSavedTips();
+
+        // Handle empty state
         if (tips.isEmpty()) {
-            tipsContent.setText("No safety tips available. Please complete the survey first.");
+            emptyView.setVisibility(View.VISIBLE); // Show "No tips" message
+            recyclerView.setVisibility(View.GONE);
         } else {
-            StringBuilder formattedTips = new StringBuilder();
-            for (int i = 0; i < tips.size(); i++) {
-                formattedTips.append(i + 1).append(". ").append(tips.get(i)).append("\n\n");
-            }
-            tipsContent.setText(formattedTips.toString());
+            emptyView.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerView.setAdapter(new TipsAdapter(tips));
         }
 
-        // Set up navigation
+        // Navigation
         backButton.setOnClickListener(v ->
                 NavHostFragment.findNavController(this)
-                        .navigate(R.id.action_TipsFragment_to_FirstFragment));
+                        .navigate(R.id.action_TipsFragment_to_FirstFragment)
+        );
     }
 
     private List<String> loadSavedTips() {
