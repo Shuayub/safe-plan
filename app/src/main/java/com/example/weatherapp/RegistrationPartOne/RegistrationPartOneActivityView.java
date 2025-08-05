@@ -38,15 +38,15 @@ public class RegistrationPartOneActivityView extends AppCompatActivity {
         );
     }
 
-    void setEmailOutputText(String text) {
+    public void setEmailOutputText(String text) {
         binding.emailError.setText(text);
     }
 
-    void setPswdOutputText(String text) {
+    public void setPswdOutputText(String text) {
         binding.passwordError.setText(text);
     }
 
-    void setConfirmPswdOutputText(String text) {
+    public void setConfirmPswdOutputText(String text) {
         binding.confirmPasswordError.setText(text);
     }
 

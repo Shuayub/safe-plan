@@ -29,7 +29,7 @@ public class RegistrationPartOneActivityPresenter {
 
 
     public void initiateEmailLogin(String email, String password, String confirmPswd) {
-        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        if (email.isEmpty() || !(Patterns.EMAIL_ADDRESS.matcher(email).matches()))
         {
             view.setEmailOutputText("Please enter a valid email address");
         }

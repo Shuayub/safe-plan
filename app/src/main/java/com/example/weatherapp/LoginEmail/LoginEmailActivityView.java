@@ -34,7 +34,7 @@ public class LoginEmailActivityView extends AppCompatActivity {
         });
     }
 
-    void setOutputText(String text) {
+    public void setOutputText(String text) {
         binding.error.setText(text);
     }
 

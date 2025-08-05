@@ -13,6 +13,7 @@ espressoCore = "3.6.1"
 appcompat = "1.7.1"
 material = "1.12.0"
 constraintlayout = "2.2.1"
+mockitoAll = "1.18.19"
 navigationFragment = "2.9.2"
 navigationUi = "2.9.2"
 navigationUiKtx = "2.9.2"
@@ -57,6 +58,7 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+mockito-all = { module = "org.mokito:mockito-all", version.ref = "mockitoAll" }
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationUiKtx" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
