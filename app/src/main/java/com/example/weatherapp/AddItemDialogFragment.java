@@ -22,6 +22,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -69,7 +71,9 @@ public class AddItemDialogFragment extends DialogFragment {
 
         SharedPreferences prefs = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         uid = prefs.getString("userUID", "xw5kWxTsebgdWJHHVOKfBIbxAwR2");
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null)
+            uid = user.getUid();
         AlertDialog dialog = new AlertDialog.Builder(requireContext())
                 .setView(view)
                 .setNegativeButton("Cancel", (d, id) -> d.dismiss())

@@ -1,21 +1,54 @@
 <resources>
-    <string name="app_name">WeatherApp</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string-array name="reminder_frequencies">
-        <item>Daily</item>
-        <item>Weekly</item>
-        <item>Monthly</item>
-    </string-array>
+    //Exit Button
+    <string name="exit">Exit</string>
 
+    //Application
+    <string name="app_name">Weather App</string>
 
-    <string name="lorem_ipsum">
-        dud
-    </string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    //IntroScreen
+    <string name="Stay_Safe_With_Us">Stay Safe With Us!</string>
+    <string name="Get_Started">Get Started</string>
+    <string name="Intro">Create a personalized safety plan before, during, or after an abusive relationship. This app is designed to support you with flexible planning, private storage, and access to trusted resources.</string>
+    <string name="first_fragment_label">Home</string>
+    //Registration screen/Pin Screen
+    <string name="register">Register</string>
+    <string name="finish">Finish Setup</string>
+    <string name="registerIntro">Welcome Onboard!</string>
+    <string name="registerMessage">Your safety is our priority</string>
+    <string name="email">Email</string>
+    <string name="emailExample">mary.elliot@mail.com</string>
+    <string name="password">Password</string>
+    <string name="password_example">************</string>
+    <string name="ConfirmPassword">Confirm Password</string>
+    <string name="pinReg">Create a 4 or 6 digit Pin</string>
+    <string name="pin_example">****</string>
+    <string name="email_error">\u274C Please enter a valid email</string>
+    <string name="password_error">\u274C Please enter a password</string>
+    <string name="confirm_password_error">\u274C Passwords do not match</string>
+
+    //Registration email verification
+    <string name="verify_email">Please Verify Your Email</string>
+
+    //Login Screens
+    <string name="loginIntro">Welcome Back!</string>
+    <string name="emailSignIn">Continue With Email</string>
+    <string name="pinLog">Pin</string>
+    <string name="Login">Login</string>
+    <string name="pinSignIn">Continue With Pin</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    //Pin Registration
+    <string name="pin_error">\u274C please enter a valid Pin</string>
+
+    //Pin Login
+    <string name="invalid_pin">\u274C Invalid Pin</string>
+
 </resources>

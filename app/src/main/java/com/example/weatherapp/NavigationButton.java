@@ -27,6 +27,9 @@ public class NavigationButton {
              else if (itemId == R.id.nav_plan && !(activity instanceof TipsActivity)) {
                 intent = new Intent(activity, TipsActivity.class);
             }
+            else if (itemId == R.id.nav_home && !(activity instanceof homeScreenActivity)) {
+                intent = new Intent(activity, homeScreenActivity.class);
+            }
 
             if (intent != null) {
                 activity.startActivity(intent);

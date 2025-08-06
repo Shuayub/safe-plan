@@ -69,9 +69,9 @@ public class InfoActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
         uid = prefs.getString("userUID", "xw5kWxTsebgdWJHHVOKfBIbxAwR2");
 
-        String testUid = "xw5kWxTsebgdWJHHVOKfBIbxAwR2";
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.signInAnonymously();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null)
+             uid = user.getUid();
 
 
 

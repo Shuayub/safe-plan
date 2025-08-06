@@ -3,29 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/SupportFragment">
 
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.weatherapp.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SupportFragment"
-            app:destination="@id/SupportFragment" />
-        <action
-            android:id="@+id/action_FirstFragment_to_ReminderFragment"
-            app:destination="@id/ReminderFragment" />
-    </fragment>
     <fragment
         android:id="@+id/SupportFragment"
         android:name="com.example.weatherapp.SupportFragment"
         tools:layout="@layout/fragment_support">
     </fragment>
-    <fragment
-        android:id="@+id/ReminderFragment"
-        android:name="com.example.weatherapp.ReminderFragment"
-        tools:layout="@layout/fragment_reminder">
-    </fragment>
+
 </navigation>
