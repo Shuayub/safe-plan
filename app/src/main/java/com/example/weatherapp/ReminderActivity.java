@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -61,6 +62,10 @@ public class ReminderActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
             }
         }
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        NavigationButton.setupNavigation(this, bottomNav);
+        bottomNav.setSelectedItemId(R.id.nav_reminders);
 
         FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
         if (exit_button != null) {
