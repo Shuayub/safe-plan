@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/edit_contact_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Contact"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/contact_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="12dp" />
+
+    <EditText
+        android:id="@+id/contact_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:layout_marginBottom="12dp" />
+
+    <EditText
+        android:id="@+id/contact_relationship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Relationship"
+        android:inputType="text"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/white" />
+</LinearLayout>

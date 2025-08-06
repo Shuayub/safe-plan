@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.weatherapp"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
@@ -15,21 +17,66 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherApp"
         tools:targetApi="31">
+        <activity android:name=".SupportActivity" />
+        <activity android:name=".ReminderActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVER_API"
+            android:value="true" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.weatherapp.WeatherActivity"
             android:exported="true"
             android:theme="@style/Theme.WeatherApp">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".ReminderReceiver"
-            android:exported="true"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InfoActivity"/>
+        <activity
+            android:name=".SurveyActivity"
+            android:label="Safety Survey"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".TipsActivity"
+            android:label="Safety Tips"
+            android:parentActivityName=".MainActivity" />
+
+        <activity android:name="com.example.weatherapp.IntroActivity"
+            android:exported="false"/>
+        <activity android:name="com.example.weatherapp.RegistrationPartOne.RegistrationPartOneActivityView"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.VerifyEmailActivity"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.RegistrationPartTwoActivity"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.LoginEmail.LoginEmailActivityView"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.LoginPinActivity"
+            android:exported="false">
+        </activity>
+        <activity android:name="com.example.weatherapp.homeScreenActivity"
+            android:exported="false">
+        </activity>
+
+        <receiver android:name=".ReminderReceiver" android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

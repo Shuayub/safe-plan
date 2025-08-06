@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:padding="24dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView android:text="Upload Document" android:textSize="20sp" android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText android:id="@+id/document_name"
+        android:hint="Document Name" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <Button android:id="@+id/select_file_button" android:text="Select File"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/primary"/>
+    <Button android:id="@+id/save_button" android:text="Upload"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/primary"/>
+</LinearLayout>
