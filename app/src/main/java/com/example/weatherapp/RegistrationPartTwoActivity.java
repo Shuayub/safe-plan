@@ -1,17 +1,12 @@
 package com.example.weatherapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 
 import com.example.weatherapp.databinding.ActivityRegistrationPartTwoBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegistrationPartTwoActivity extends AppCompatActivity {
 
     private ActivityRegistrationPartTwoBinding binding;
-    private SharedPreferences sharedPreferences;
     private FirebaseAuth mAuth;
 
     @Override
@@ -36,12 +30,10 @@ public class RegistrationPartTwoActivity extends AppCompatActivity {
             if (pin.length() == 4 || pin.length() == 6) {
                 String userUID = mAuth.getUid();
 
-                sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-                SharedPreferences.Editor userPinEditor = sharedPreferences.edit();
-                userPinEditor.putBoolean("createdPin", true);
-                userPinEditor.putString("userPin", pin);
-                userPinEditor.putString("userUID", userUID);
-                userPinEditor.apply();
+                SharedPreferenceHelper.editor.putBoolean("createdPin", true);
+                SharedPreferenceHelper.editor.putString("userPin", pin);
+                SharedPreferenceHelper.editor.putString("userUID", userUID);
+                SharedPreferenceHelper.editor.apply();
 
                 // Navigate to next screen (SurveyActivity)
                 Intent intent = new Intent(this, survey.class);

@@ -3,7 +3,7 @@ package com.example.weatherapp.LoginEmail;
 import android.util.Patterns;
 
 import com.example.weatherapp.RegistrationPartTwoActivity;
-import com.example.weatherapp.tips;
+import com.example.weatherapp.homeScreenActivity;
 
 public class LoginEmailActivityPresenter {
 
@@ -16,7 +16,7 @@ public class LoginEmailActivityPresenter {
     }
     void GoogleSignInSuccess() {
         if (model.checkPinCreated()) {
-            view.sendToNextScreen(tips.class);
+            view.sendToNextScreen(homeScreenActivity.class);
         }
         else {
             view.sendToNextScreen(RegistrationPartTwoActivity.class);
@@ -47,7 +47,7 @@ public class LoginEmailActivityPresenter {
     public void onEmailSignIn(boolean successful) {
         if (successful) {
             if (model.checkPinCreated()) {
-                view.sendToNextScreen(tips.class);
+                view.sendToNextScreen(homeScreenActivity.class);
             }
             else {
                 view.sendToNextScreen(RegistrationPartTwoActivity.class);

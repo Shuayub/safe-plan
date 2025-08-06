@@ -1,10 +1,9 @@
 package com.example.weatherapp.RegistrationPartOne;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
 
 import com.example.weatherapp.GoogleSignInFragment;
+import com.example.weatherapp.SharedPreferenceHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -18,8 +17,6 @@ public class RegistrationPartOneActivityModel implements GoogleSignInFragment.Go
 
     public RegistrationPartOneActivityModel(RegistrationPartOneActivityView view) {
         mAuth = FirebaseAuth.getInstance();
-        view.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.getBaseContext());
-        view.prefEditor = view.sharedPreferences.edit();
         this.view = view;
 
         view.googleSignInFragment = new GoogleSignInFragment();
@@ -63,8 +60,8 @@ public class RegistrationPartOneActivityModel implements GoogleSignInFragment.Go
     public void onGoogleSignInSuccess(FirebaseUser user) {
         RegistrationPartOneActivityPresenter presenter = new RegistrationPartOneActivityPresenter(this, view);
         presenter.GoogleSignInSuccess();
-        view.prefEditor.putBoolean("createdAccount", true);
-        view.prefEditor.apply();
+        SharedPreferenceHelper.editor.putBoolean("createdAccount", true);
+        SharedPreferenceHelper.editor.apply();
         view.finish();
     }
 

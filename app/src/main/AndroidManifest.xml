@@ -46,7 +46,7 @@
         <activity android:name="com.example.weatherapp.LoginPinActivity"
             android:exported="false">
         </activity>
-        <activity android:name="com.example.weatherapp.tips"
+        <activity android:name="com.example.weatherapp.homeScreenActivity"
             android:exported="false">
         </activity>
         <activity android:name="com.example.weatherapp.survey"

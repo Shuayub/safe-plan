@@ -31,8 +31,7 @@ public class LoginPinActivity extends AppCompatActivity {
             String storedPin = sharedPreferences.getString("userPin", null);
 
             if (pin.equals(storedPin)) {
-                // Navigate to tips activity
-                Intent intent = new Intent(LoginPinActivity.this, tips.class);
+                Intent intent = new Intent(LoginPinActivity.this, homeScreenActivity.class);
                 startActivity(intent);
                 finish(); // Optional
             } else {

@@ -1,7 +1,6 @@
 package com.example.weatherapp.RegistrationPartOne;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +12,6 @@ public class RegistrationPartOneActivityView extends AppCompatActivity {
     private ActivityRegistrationPartOneBinding binding;
     GoogleSignInFragment googleSignInFragment;
     private RegistrationPartOneActivityPresenter presenter;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor prefEditor;
 
 
     @Override

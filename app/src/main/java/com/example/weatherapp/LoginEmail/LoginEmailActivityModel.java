@@ -1,25 +1,18 @@
 package com.example.weatherapp.LoginEmail;
 
-import android.content.SharedPreferences;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
-
 import com.example.weatherapp.GoogleSignInFragment;
+import com.example.weatherapp.SharedPreferenceHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import android.content.Context;
 
-public class LoginEmailActivityModel implements GoogleSignInFragment.GoogleSignInCallback{
+public class LoginEmailActivityModel implements GoogleSignInFragment.GoogleSignInCallback {
 
     private FirebaseAuth mAuth;
-    private SharedPreferences sharedPreferences;
     LoginEmailActivityView view;
 
 
     public LoginEmailActivityModel(LoginEmailActivityView view) {
         mAuth = FirebaseAuth.getInstance();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view);
         this.view = view;
     }
 
@@ -53,6 +46,6 @@ public class LoginEmailActivityModel implements GoogleSignInFragment.GoogleSignI
     }
 
     public boolean checkPinCreated() {
-        return(sharedPreferences.getBoolean("CreatedPin", false));
+        return(SharedPreferenceHelper.verifyPinCreated());
     }
 }

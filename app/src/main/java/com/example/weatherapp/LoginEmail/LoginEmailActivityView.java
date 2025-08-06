@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weatherapp.GoogleSignInFragment;
-import com.example.weatherapp.RegistrationPartTwoActivity;
 import com.example.weatherapp.databinding.ActivityLoginEmailBinding;
 
 public class LoginEmailActivityView extends AppCompatActivity {
