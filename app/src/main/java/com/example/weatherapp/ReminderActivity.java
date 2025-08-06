@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ import java.lang.reflect.Type;
      * Fragment to manage reminders. Provides UI to add, edit, and delete reminders.
      * Stores reminders in SharedPreferences.
      */
-    public class ReminderActivity extends Fragment {
+    public class ReminderActivity extends AppCompatActivity {
 
         private ArrayList<ReminderItem> reminderList;
         private ReminderAdapter adapter;
@@ -52,25 +53,16 @@ import java.lang.reflect.Type;
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setHasOptionsMenu(true);
-        }
+            setContentView(R.layout.activity_reminder);  // Reusing the same layout
 
-        /**
-         * Inflates the fragment layout, sets up RecyclerView and "Add Reminder" button.
-         */
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_reminder, container, false);
-
-            RecyclerView recyclerView = view.findViewById(R.id.reminderRecyclerView);
+            RecyclerView recyclerView = findViewById(R.id.reminderRecyclerView);
             loadReminders();
-            adapter = new ReminderAdapter(reminderList, requireContext(), this::showEditReminderDialog);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+            adapter = new ReminderAdapter(reminderList, this, this::showEditReminderDialog);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(adapter);
 
-            view.findViewById(R.id.addReminderButton).setOnClickListener(v -> showAddReminderDialog());
-
-            return view;
+            findViewById(R.id.addReminderButton).setOnClickListener(v -> showAddReminderDialog());
         }
 
         /**
@@ -78,17 +70,17 @@ import java.lang.reflect.Type;
          * Adds the new reminder to the list and saves it.
          */
         private void showAddReminderDialog() {
-            View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_reminder, null);
+            View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_reminder, null);
             Spinner spinner = dialogView.findViewById(R.id.frequencySpinner);
             TimePicker timePicker = dialogView.findViewById(R.id.timePicker);
             timePicker.setIs24HourView(false);
 
-            ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(requireContext(),
+            ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
                     R.array.reminder_frequencies, android.R.layout.simple_spinner_item);
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(spinnerAdapter);
 
-            new AlertDialog.Builder(getContext())
+            new AlertDialog.Builder(this)
                     .setTitle("Add Reminder")
                     .setView(dialogView)
                     .setPositiveButton("Add", (dialog, which) -> {
@@ -107,8 +99,7 @@ import java.lang.reflect.Type;
 
                         ReminderItem item = new ReminderItem(freq, time, requestCode);
                         reminderList.add(item);
-
-                        adapter.notifyDataSetChanged();
+                        adapter.notifyDataSetChanged();  // Added this line to refresh UI
                         saveReminders();
                     })
                     .setNegativeButton("Cancel", null)
@@ -123,12 +114,12 @@ import java.lang.reflect.Type;
          */
         private void showEditReminderDialog(int position) {
             ReminderItem reminder = reminderList.get(position);
-            View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_reminder, null);
+            View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_reminder, null);
             Spinner spinner = dialogView.findViewById(R.id.frequencySpinner);
             TimePicker timePicker = dialogView.findViewById(R.id.timePicker);
             timePicker.setIs24HourView(false);
 
-            ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getContext(),
+            ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
                     R.array.reminder_frequencies, android.R.layout.simple_spinner_item);
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(spinnerAdapter);
@@ -140,13 +131,15 @@ import java.lang.reflect.Type;
                 int hour = Integer.parseInt(parts[0]);
                 int minute = Integer.parseInt(parts[1]);
                 String ampm = parts[2];
+
                 if (ampm.equals("PM") && hour != 12) hour += 12;
                 if (ampm.equals("AM") && hour == 12) hour = 0;
+
                 timePicker.setHour(hour);
                 timePicker.setMinute(minute);
             } catch (Exception ignored) {}
 
-            new AlertDialog.Builder(getContext())
+            new AlertDialog.Builder(this)
                     .setTitle("Edit Reminder")
                     .setView(dialogView)
                     .setPositiveButton("Save", (dialog, which) -> {
@@ -180,7 +173,7 @@ import java.lang.reflect.Type;
          * If no reminders exist, initializes an empty list.
          */
         private void loadReminders() {
-            SharedPreferences prefs = requireContext().getSharedPreferences("ReminderPrefs", 0);
+            SharedPreferences prefs = getSharedPreferences("ReminderPrefs", 0);
             String json = prefs.getString("reminders", null);
             if (json != null) {
                 Gson gson = new Gson();
@@ -195,21 +188,12 @@ import java.lang.reflect.Type;
          * Saves the current reminder list to SharedPreferences in JSON format.
          */
         private void saveReminders() {
-            SharedPreferences prefs = requireContext().getSharedPreferences("ReminderPrefs", 0);
+            SharedPreferences prefs = getSharedPreferences("ReminderPrefs", 0);
             SharedPreferences.Editor editor = prefs.edit();
             Gson gson = new Gson();
             String json = gson.toJson(reminderList);
             editor.putString("reminders", json);
             editor.apply();
-        }
-
-        /**
-         * Inflate the menu for toolbar actions (e.g., clear all reminders).
-         */
-        @Override
-        public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-            inflater.inflate(R.menu.reminder_menu, menu);
-            super.onCreateOptionsMenu(menu, inflater);
         }
 
         /**
@@ -221,7 +205,7 @@ import java.lang.reflect.Type;
                 reminderList.clear();
                 adapter.notifyDataSetChanged();
                 saveReminders();
-                Toast.makeText(getContext(), "All reminders cleared", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "All reminders cleared", Toast.LENGTH_SHORT).show();
                 return true;
             }
             return super.onOptionsItemSelected(item);

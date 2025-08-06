@@ -13,6 +13,7 @@
         android:theme="@style/Theme.WeatherApp"
         tools:targetApi="31">
 
+        <!-- Main entry point -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -22,6 +23,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Added ReminderActivity -->
+        <activity
+            android:name=".ReminderActivity"
+            android:exported="false"
+            android:theme="@style/Theme.WeatherApp" />
+
+        <!-- Added SupportActivity -->
+        <activity
+            android:name=".SupportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.WeatherApp" />
 
     </application>
 </manifest>

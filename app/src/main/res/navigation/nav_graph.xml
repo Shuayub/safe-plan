@@ -12,20 +12,23 @@
         tools:layout="@layout/fragment_first">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SupportFragment"
-            app:destination="@id/SupportFragment" />
+            android:id="@+id/action_FirstFragment_to_SupportActivity"
+            app:destination="@id/SupportActivity" />
+
         <action
-            android:id="@+id/action_FirstFragment_to_ReminderFragment"
-            app:destination="@id/ReminderFragment" />
+            android:id="@+id/action_FirstFragment_to_ReminderActivity"
+            app:destination="@id/ReminderActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/SupportFragment"
-        android:name="com.example.weatherapp.SupportFragment"
-        tools:layout="@layout/fragment_support">
-    </fragment>
-    <fragment
-        android:id="@+id/ReminderFragment"
+
+    <activity
+        android:id="@+id/SupportActivity"
+        android:name="com.example.weatherapp.SupportActivity"
+        android:label="Support"
+        tools:layout="@layout/activity_support" />
+
+    <activity
+        android:id="@+id/ReminderActivity"
         android:name="com.example.weatherapp.ReminderActivity"
-        tools:layout="@layout/fragment_reminder">
-    </fragment>
+        android:label="Reminder"
+        tools:layout="@layout/activity_reminder" />
 </navigation>

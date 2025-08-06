@@ -8,15 +8,14 @@ import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.weatherapp.databinding.FragmentSupportBinding;
+import com.example.weatherapp.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONObject;
 
@@ -24,32 +23,23 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
-public class SupportFragment extends Fragment {
+public class SupportActivity extends AppCompatActivity {
 
-    private final String selectedCity = "Toronto";
+    private final String selectedCity = "Calgary";
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-        FragmentSupportBinding binding = FragmentSupportBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_support); // renamed XML layout
 
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void onViewCreated(@NonNull View rootView, Bundle savedInstanceState) {
-        super.onViewCreated(rootView, savedInstanceState);
+        TextView title = findViewById(R.id.titleText);
+        TextView subtitle = findViewById(R.id.subtitleText);
 
-        TextView title = rootView.findViewById(R.id.title);
-        TextView subtitle = rootView.findViewById(R.id.subtitle);
-
-        TextView victimServicesText = rootView.findViewById(R.id.victimServicesText);
-        TextView hotlineText = rootView.findViewById(R.id.hotlineText);
-        TextView sheltersText = rootView.findViewById(R.id.sheltersText);
-        TextView legalAidText = rootView.findViewById(R.id.legalAidText);
-        TextView policeText = rootView.findViewById(R.id.policeText);
+        TextView victimServicesText = findViewById(R.id.servicesText);
+        TextView hotlineText = findViewById(R.id.hotlineText);
+        TextView sheltersText = findViewById(R.id.sheltersText);
+        TextView legalAidText = findViewById(R.id.legalAidText);
+        TextView policeText = findViewById(R.id.policeText);
 
         try {
             JSONObject allCities = new JSONObject(loadJSONFromAsset("support.json"));
@@ -118,7 +108,7 @@ public class SupportFragment extends Fragment {
 
     private String loadJSONFromAsset(String filename) {
         try {
-            InputStream is = requireContext().getAssets().open(filename);
+            InputStream is = getAssets().open(filename);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

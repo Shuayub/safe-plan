@@ -8,26 +8,31 @@
     android:padding="24dp"
     android:background="#FAF9F9">
 
-    <!--- Button to add a new reminder -->
+    <!-- Spacer to push button down slightly -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="32dp" />
+
+    <!-- Centered Add Reminder Button -->
     <Button
         android:id="@+id/addReminderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Reminder"
-        android:textAllCaps="false"
+        android:text="ADD REMINDER"
+        android:textAllCaps="true"
+        android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#6A4CAC"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="12dp"
-        android:layout_gravity="start"
-        android:elevation="4dp"
+        android:background="@drawable/rounded_purple_button"
+        android:elevation="8dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp" />
 
-    <!-- RecyclerView to show reminders -->
+    <!-- RecyclerView showing reminders aligned to left -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reminderRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingBottom="8dp" />
 </LinearLayout>
