@@ -34,7 +34,7 @@
                 android:id="@+id/buttonSurvey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Survey"
+                android:text="Start Survey"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp"/>
         </LinearLayout>
