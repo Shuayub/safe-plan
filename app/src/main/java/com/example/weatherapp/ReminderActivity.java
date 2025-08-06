@@ -235,15 +235,7 @@ public class ReminderActivity extends AppCompatActivity {
     private void scheduleReminder(String freq, int hour, int minute, int requestCode) {
         long triggerTime = calculateNextTime(hour, minute);
         Intent intent = new Intent(this, ReminderReceiver.class);
-        intent.putExtra("frequency", freq);
-
-        int hourFormat = (hour == 0 || hour == 12) ? 12 : hour % 12;
-        String amPm = (hour >= 12) ? "PM" : "AM";
-        String timeFormatted = String.format("%02d:%02d %s", hourFormat, minute, amPm);
-        intent.putExtra("time", timeFormatted);
-
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 
         // Opens setting screen so user can allow notifications to be turned on if using android versions greater than version 8.0.
