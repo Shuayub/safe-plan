@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weatherapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
 
@@ -74,6 +75,11 @@ public class SupportActivity extends AppCompatActivity {
             title.setText("Error");
             subtitle.setText("Couldn't load support data.");
             victimServicesText.setText(e.getMessage());
+        }
+
+        FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
+        if (exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(this, exit_button);
         }
     }
 

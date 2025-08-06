@@ -75,6 +75,8 @@ dependencies {
     implementation(libs.okhttp)
 
     // Testing
+    implementation(libs.work.runtime)
+    implementation(libs.firebase.inappmessaging)
     testImplementation(libs.junit)
     testImplementation("org.mockito:mockito-core:5.11.0")
     testImplementation("org.robolectric:robolectric:4.15.1")
