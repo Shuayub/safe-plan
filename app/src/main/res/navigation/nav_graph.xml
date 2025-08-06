@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/ReminderFragment"
-        android:name="com.example.weatherapp.ReminderFragment"
+        android:name="com.example.weatherapp.ReminderActivity"
         tools:layout="@layout/fragment_reminder">
     </fragment>
 </navigation>
