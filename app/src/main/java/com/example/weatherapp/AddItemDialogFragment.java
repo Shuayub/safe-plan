@@ -156,7 +156,7 @@ public class AddItemDialogFragment extends DialogFragment {
         Button save = view.findViewById(R.id.save_button);
 
         selectFile.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.setType("*/*");
             filePickerLauncher.launch(Intent.createChooser(intent, "Select a file"));
         });

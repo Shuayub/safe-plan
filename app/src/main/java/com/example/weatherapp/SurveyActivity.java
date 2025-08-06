@@ -54,7 +54,7 @@ public class SurveyActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(SurveyViewModel.class);
         loadUnifiedJson();
         loadPage(currentPage);
-        buttonSurvey.setText("Back");
+        buttonSurvey.setText("Next");
 
         buttonSurvey.setOnClickListener(v -> handleNavigation());
     }

@@ -28,6 +28,7 @@ public class SupportActivity extends AppCompatActivity {
 
     private final String selectedCity = "Toronto";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -21,9 +21,9 @@ public class SurveyViewModel extends ViewModel {
         // Save to Firebase as well (optional)
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (user != null || true) { //TODO REMOVE TRUE AFTER
-            //String uid = user.getUid();
-            String uid = "xw5kWxTsebgdWJHHVOKfBIbxAwR2"; //TODO REMOVE THIS LINE AFTER
+        if (user != null) {
+            String uid = user.getUid();
+
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("surveyAnswers").child(uid);
             ref.child("page1Choice").setValue(choice);
         }
