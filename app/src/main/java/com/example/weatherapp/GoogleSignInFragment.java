@@ -29,10 +29,31 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+
+/**
+ * GoogleSignInFragment handles Google sign-in using the new AndroidX Credential API.
+ * It initializes a credential request, launches the sign-in flow, and authenticates with Firebase
+ * using the Google ID token. The result is passed back via a  GoogleSignInCallback.
+ * This fragment is reusable and can be embedded in any activity to perform Google sign-in.
+ */
 public class GoogleSignInFragment extends Fragment {
 
+    /**
+     * Callback interface for receiving sign-in result events.
+     */
     public interface GoogleSignInCallback {
+        /**
+         * Called when sign-in succeeds with a valid Firebase user.
+         *
+         * @param user The signed-in Firebase user.
+         */
         void onGoogleSignInSuccess(FirebaseUser user);
+
+        /**
+         * Called when sign-in fails due to an error.
+         *
+         * @param reason A message describing the failure reason.
+         */
         void onGoogleSignInFailure(String reason);
     }
 
@@ -43,10 +64,20 @@ public class GoogleSignInFragment extends Fragment {
     private CredentialManager credentialManager;
     private GetCredentialRequest request;
 
+    /**
+     * Sets the callback to receive sign-in result events.
+     *
+     * @param callback The callback implementation provided by the parent component.
+     */
     public void setCallback(GoogleSignInCallback callback) {
         this.callback = callback;
     }
 
+    /**
+     * Initializes FirebaseAuth and a single-threaded executor on fragment attachment.
+     *
+     * @param context The host context.
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -54,12 +85,21 @@ public class GoogleSignInFragment extends Fragment {
         executor = Executors.newSingleThreadExecutor();
     }
 
+    /**
+     * Creates the credential request on fragment creation.
+     *
+     * @param savedInstanceState If the fragment is being re-created from a previous state, this is the state.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createRequest();
     }
 
+    /**
+     * Starts the Google sign-in flow using CredentialManager .
+     * The result is handled via callbacks and UI feedback is shown on the main thread.
+     */
     public void performGoogleSignIn() {
         CancellationSignal cancellationSignal = new CancellationSignal();
 
@@ -108,6 +148,10 @@ public class GoogleSignInFragment extends Fragment {
         );
     }
 
+    /**
+     * Builds the GetCredentialRequest with GetGoogleIdOption
+     * and initializes the CredentialManager.
+     */
     private void createRequest() {
         GetGoogleIdOption googleIdOption = new GetGoogleIdOption.Builder()
                 .setFilterByAuthorizedAccounts(false)
@@ -122,6 +166,12 @@ public class GoogleSignInFragment extends Fragment {
         credentialManager = CredentialManager.create(requireContext());
     }
 
+
+    /**
+     * Handles the credential result by validating its type and extracting the Google ID token.
+     *
+     * @param credential The credential returned by CredentialManager.
+     */
     private void handleSignIn(Credential credential) {
         if (credential instanceof CustomCredential
                 && credential.getType().equals(GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)) {
@@ -135,6 +185,11 @@ public class GoogleSignInFragment extends Fragment {
         }
     }
 
+    /**
+     * Signs in to Firebase using the provided Google ID token.
+     *
+     * @param idToken The ID token retrieved from Google.
+     */
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
