@@ -12,6 +12,7 @@ import androidx.preference.PreferenceManager;
 
 import com.example.weatherapp.LoginEmail.LoginEmailActivityView;
 import com.example.weatherapp.databinding.ActivityLoginPinBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class LoginPinActivity extends AppCompatActivity {
 
@@ -23,6 +24,11 @@ public class LoginPinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginPinBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
+        if (exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(this, exit_button);
+        }
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 

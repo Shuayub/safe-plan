@@ -14,6 +14,23 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.85" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/emergency_exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:contentDescription="Quick Exit"
+        app:backgroundTint="#81D4FA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.897"
+        app:maxImageSize="210dp"
+        app:srcCompat="@drawable/ic_quick_exit"
+        app:tint="@null" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -135,32 +152,31 @@
         app:layout_constraintVertical_bias="0.715"
         app:layout_constraintWidth_percent="0.9" />
 
+
     <ImageButton
         android:id="@+id/googleSignInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/google_button"
-        android:background="@android:color/transparent"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
         android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
         android:clickable="true"
         android:focusable="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/google_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835"/>
-
+        app:layout_constraintVertical_bias="0.826" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/LoginButton"
         android:layout_width="0dp"
         android:layout_height="63dp"
         android:backgroundTint="#64d4c4"
-        android:text="@string/Login"
         android:fontFamily="@font/poppins_bold"
+        android:text="@string/Login"
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -171,7 +187,7 @@
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottomGuide"
-        app:layout_constraintVertical_bias="0.042"
+        app:layout_constraintVertical_bias="0.797"
         app:layout_constraintWidth_percent="0.9" />
 
 

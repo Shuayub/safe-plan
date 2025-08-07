@@ -5,14 +5,18 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.weatherapp.EmergencyExitButton;
 import com.example.weatherapp.GoogleSignInFragment;
+import com.example.weatherapp.R;
 import com.example.weatherapp.databinding.ActivityLoginEmailBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class LoginEmailActivityView extends AppCompatActivity {
 
     public GoogleSignInFragment googleSignInFragment;
     private ActivityLoginEmailBinding binding;
     private LoginEmailActivityPresenter presenter;
+    FloatingActionButton exit_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,12 @@ public class LoginEmailActivityView extends AppCompatActivity {
         binding.googleSignInButton.setOnClickListener(v -> {
             presenter.initiateGoogleSignIn();
         });
+
+        exit_button = findViewById(R.id.emergency_exit_button);
+        presenter.initiateEmergencyExit();
+        if (exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(this, exit_button);
+        }
     }
 
     public void setOutputText(String text) {

@@ -9,6 +9,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.weatherapp.databinding.ActivityRegistrationPartTwoBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegistrationPartTwoActivity extends AppCompatActivity {
@@ -21,6 +22,11 @@ public class RegistrationPartTwoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRegistrationPartTwoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
+        if (exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(this, exit_button);
+        }
 
         mAuth = FirebaseAuth.getInstance();
 
