@@ -2,6 +2,8 @@ package com.example.weatherapp.RegistrationPartOne;
 
 import android.util.Patterns;
 
+import com.example.weatherapp.EmergencyExitButton;
+import com.example.weatherapp.R;
 import com.example.weatherapp.RegistrationPartTwoActivity;
 import com.example.weatherapp.VerifyEmailActivity;
 
@@ -50,6 +52,12 @@ public class RegistrationPartOneActivityPresenter {
         }
         else {
             view.setConfirmPswdOutputText(message);
+        }
+    }
+
+    public void initiateEmergencyExit() {
+        if (view.exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(view, view.exit_button);
         }
     }
 }

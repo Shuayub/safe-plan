@@ -15,6 +15,23 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.85" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/emergency_exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:contentDescription="Quick Exit"
+        app:backgroundTint="#81D4FA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.837"
+        app:maxImageSize="210dp"
+        app:srcCompat="@drawable/ic_quick_exit"
+        app:tint="@null" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
@@ -127,8 +144,8 @@
         android:layout_width="0dp"
         android:layout_height="63dp"
         android:backgroundTint="#64d4c4"
-        android:text="@string/Login"
         android:fontFamily="@font/poppins_bold"
+        android:text="@string/Login"
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -137,9 +154,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottomGuide"
-        app:layout_constraintVertical_bias="0.042"
+        app:layout_constraintVertical_bias="0.478"
         app:layout_constraintWidth_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

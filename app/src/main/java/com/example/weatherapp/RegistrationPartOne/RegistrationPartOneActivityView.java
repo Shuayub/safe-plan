@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.weatherapp.EmergencyExitButton;
 import com.example.weatherapp.GoogleSignInFragment;
+import com.example.weatherapp.R;
 import com.example.weatherapp.databinding.ActivityRegistrationPartOneBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class RegistrationPartOneActivityView extends AppCompatActivity {
 
     private ActivityRegistrationPartOneBinding binding;
     GoogleSignInFragment googleSignInFragment;
     private RegistrationPartOneActivityPresenter presenter;
+    FloatingActionButton exit_button;
 
 
     @Override
@@ -33,6 +37,12 @@ public class RegistrationPartOneActivityView extends AppCompatActivity {
                         binding.confirmPasswordEditText.getText().toString()
                 )
         );
+
+        exit_button = findViewById(R.id.emergency_exit_button);
+        presenter.initiateEmergencyExit();
+        if (exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(this, exit_button);
+        }
     }
 
     public void setEmailOutputText(String text) {

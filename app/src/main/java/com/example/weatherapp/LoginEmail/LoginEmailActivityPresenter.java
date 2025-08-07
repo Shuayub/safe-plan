@@ -2,6 +2,7 @@ package com.example.weatherapp.LoginEmail;
 
 import android.util.Patterns;
 
+import com.example.weatherapp.EmergencyExitButton;
 import com.example.weatherapp.RegistrationPartTwoActivity;
 import com.example.weatherapp.homeScreenActivity;
 
@@ -55,6 +56,12 @@ public class LoginEmailActivityPresenter {
         }
         else {
             view.setOutputText("Please check your entries");
+        }
+    }
+
+    public void initiateEmergencyExit() {
+        if (view.exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(view, view.exit_button);
         }
     }
 }
