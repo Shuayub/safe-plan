@@ -12,10 +12,8 @@ To fully run and test the app, ensure the following:
 - Firebase project includes:
   - Authentication enabled (Email/Password, Google Sign-In)
   - Firestore database configured
-- 
 - The initial Screen is disguised with a weatherapp, in order to go to the safe-plan app, 
-- type login into the textbox and press search
-- 
+  Type login (uppercase or lowercase or a combination of both) into the textbox and press search. 
 - Example testing account:
 Email: test@gmail.com
 Password: 123456
