@@ -61,7 +61,7 @@ Password: 123456
 - Login screen (including PIN logic)
 
 ### 🧑‍💻 Aaditya
-- Reminder backend support and logic
+- Reminder backend support and logic and notifications
 - Emergency Exit button
 - Weather screen
 
