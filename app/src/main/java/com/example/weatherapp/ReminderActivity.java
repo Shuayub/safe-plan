@@ -40,10 +40,19 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * ReminderActivity handles the creation, editing, displaying, and scheduling of user-defined reminders.
+ * It uses RecyclerView for displaying reminders and AlarmManager for scheduling them.
+ */
 public class ReminderActivity extends AppCompatActivity {
     private ArrayList<ReminderItem> reminderList;
     private ReminderAdapter adapter;
 
+    /**
+     * Initializes the activity, sets up the RecyclerView, buttons, bottom navigation, and loads saved reminders.
+     *
+     * @param savedInstanceState the saved state of the activity if it's being re-initialized
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +83,10 @@ public class ReminderActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Opens a dialog to add a new reminder with frequency and time selection.
+     * On confirmation, the reminder is saved and scheduled.
+     */
     private void showAddReminderDialog() {
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_reminder, null);
         Spinner spinner = dialogView.findViewById(R.id.frequencySpinner);
@@ -110,6 +123,11 @@ public class ReminderActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * Opens a dialog to edit or delete an existing reminder.
+     *
+     * @param position the position of the reminder in the list to be edited
+     */
     private void showEditReminderDialog(int position) {
         ReminderItem reminder = reminderList.get(position);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_reminder, null);
@@ -164,6 +182,10 @@ public class ReminderActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * Loads reminders from SharedPreferences using Gson deserialization.
+     * Initializes an empty list if no saved data is found.
+     */
     private void loadReminders() {
         SharedPreferences prefs = getSharedPreferences("ReminderPrefs", 0);
         String json = prefs.getString("reminders", null);
@@ -176,6 +198,9 @@ public class ReminderActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Saves the current list of reminders into SharedPreferences using Gson serialization.
+     */
     private void saveReminders() {
         SharedPreferences prefs = getSharedPreferences("ReminderPrefs", 0);
         SharedPreferences.Editor editor = prefs.edit();
@@ -185,12 +210,25 @@ public class ReminderActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    /**
+     * Inflates the menu options from XML for this activity.
+     *
+     * @param menu the menu to inflate
+     * @return true if the menu was created successfully
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.reminder_menu, menu);
         return true;
     }
 
+    /**
+     * Handles selection of menu options.
+     * Clears all reminders when the clear option is selected.
+     *
+     * @param item the selected menu item
+     * @return true if handled, false otherwise
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_clear_all) {
