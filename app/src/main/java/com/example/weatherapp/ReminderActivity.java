@@ -23,11 +23,9 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,7 +45,7 @@ public class ReminderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_reminder); // You can rename to activity_reminder if preferred
+        setContentView(R.layout.activity_reminder);
 
         RecyclerView recyclerView = findViewById(R.id.reminderRecyclerView);
         loadReminders();
@@ -71,9 +69,13 @@ public class ReminderActivity extends AppCompatActivity {
         if (exit_button != null) {
             EmergencyExitButton.setupEmergencyExit(this, exit_button);
         }
-
     }
 
+    /**
+     * Displays a dialog to add a new reminder.
+     * Collects user input for frequency and time, schedules the reminder,
+     * saves it to SharedPreferences, and updates the list.
+     */
     private void showAddReminderDialog() {
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_reminder, null);
         Spinner spinner = dialogView.findViewById(R.id.frequencySpinner);
@@ -110,6 +112,12 @@ public class ReminderActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * Displays a dialog to edit an existing reminder.
+     * Pre-fills existing frequency and time, allows editing or deletion.
+     *
+     * @param position The position of the reminder in the list.
+     */
     private void showEditReminderDialog(int position) {
         ReminderItem reminder = reminderList.get(position);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_reminder, null);
@@ -164,6 +172,10 @@ public class ReminderActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * Loads the list of reminders from SharedPreferences.
+     * If no data exists, initializes an empty list.
+     */
     private void loadReminders() {
         SharedPreferences prefs = getSharedPreferences("ReminderPrefs", 0);
         String json = prefs.getString("reminders", null);
@@ -176,6 +188,9 @@ public class ReminderActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Saves the current list of reminders to SharedPreferences as JSON.
+     */
     private void saveReminders() {
         SharedPreferences prefs = getSharedPreferences("ReminderPrefs", 0);
         SharedPreferences.Editor editor = prefs.edit();
@@ -203,13 +218,12 @@ public class ReminderActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     /**
      * Calculates the next future timestamp in milliseconds.
      *
-     * @param hour The hour of the day in the range 0-23
-     * @param minute The minute of the given hour in the range 0-59
-     * @return The next trigger for the alarm
+     * @param hour The hour of the day in the range 0–23
+     * @param minute The minute of the given hour in the range 0–59
+     * @return The next trigger for the alarm in milliseconds
      */
     private long calculateNextTime(int hour, int minute) {
         Calendar calendar = Calendar.getInstance();
@@ -259,16 +273,16 @@ public class ReminderActivity extends AppCompatActivity {
     }
 
     /**
-     * Cancels a previously scheduled reminder based on its unique identifier
+     * Cancels a previously scheduled reminder based on its unique identifier.
      *
      * @param requestCode The unique identifier for the specific reminder
      */
     private void cancelReminder(int requestCode) {
         Intent intent = new Intent(this, ReminderReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast( this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null)
             alarmManager.cancel(pendingIntent);
-
     }
 }
