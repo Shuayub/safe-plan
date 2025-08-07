@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
     android:background="@android:color/white">
 
@@ -37,6 +38,19 @@
                 android:text="Start Survey"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/emergency_exit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="Quick Exit"
+                app:backgroundTint="#81D4FA"
+                app:tint="@null"
+                app:maxImageSize="210dp"
+                app:srcCompat="@drawable/ic_quick_exit" />
         </LinearLayout>
     </LinearLayout>
+
 </ScrollView>
