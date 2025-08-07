@@ -3,6 +3,7 @@ package com.example.weatherapp.RegistrationPartOne;
 import android.util.Patterns;
 
 import com.example.weatherapp.EmergencyExitButton;
+import com.example.weatherapp.LoginEmail.LoginEmailActivityView;
 import com.example.weatherapp.R;
 import com.example.weatherapp.RegistrationPartTwoActivity;
 import com.example.weatherapp.VerifyEmailActivity;
@@ -48,7 +49,7 @@ public class RegistrationPartOneActivityPresenter {
 
     public void setViewText(boolean successful, String message) {
         if (successful) {
-            view.sendToNextScreen(VerifyEmailActivity.class);
+            view.sendToNextScreen(LoginEmailActivityView.class);
         }
         else {
             view.setConfirmPswdOutputText(message);
