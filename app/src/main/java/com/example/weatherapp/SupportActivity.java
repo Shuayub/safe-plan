@@ -30,9 +30,13 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
+/**
+ * Displays support services information for the selected city.
+ * Fetches the selected city from Firebase and displays links and phone numbers loaded from a local JSON file.
+ */
 public class SupportActivity extends AppCompatActivity {
 
-    private String selectedCity = "Toronto";  // Default fallback
+    private String selectedCity = "Toronto";  // Default fallback city
 
     private TextView title, subtitle;
     private TextView victimServicesText, hotlineText, sheltersText, legalAidText, policeText;
@@ -42,28 +46,33 @@ public class SupportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_support);
 
+        // Set up bottom navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         NavigationButton.setupNavigation(this, bottomNav);
         bottomNav.setSelectedItemId(R.id.nav_support);
 
+        // Bind views
         title = findViewById(R.id.title);
         subtitle = findViewById(R.id.subtitle);
-
         victimServicesText = findViewById(R.id.victimServicesText);
         hotlineText = findViewById(R.id.hotlineText);
         sheltersText = findViewById(R.id.sheltersText);
         legalAidText = findViewById(R.id.legalAidText);
         policeText = findViewById(R.id.policeText);
 
-        // Call the Firebase fetch method here
+        // Load selected city from Firebase and populate UI
         fetchSelectedCityFromFirebase();
 
+        // Set up emergency exit button
         FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
         if (exit_button != null) {
             EmergencyExitButton.setupEmergencyExit(this, exit_button);
         }
     }
 
+    /**
+     * Fetches the selected city from Firebase using the logged-in user's UID.
+     */
     private void fetchSelectedCityFromFirebase() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -75,25 +84,29 @@ public class SupportActivity extends AppCompatActivity {
                     .child("1")
                     .child("P1Q2"); // Adjust path as needed
 
-        cityRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String city = snapshot.getValue(String.class);
-                if (city != null && !city.isEmpty()) {
-                    selectedCity = city;
+            cityRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String city = snapshot.getValue(String.class);
+                    if (city != null && !city.isEmpty()) {
+                        selectedCity = city;
+                    }
+                    updateUIWithCityData();
                 }
-                updateUIWithCityData();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Use default city on error
-                updateUIWithCityData();
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Use default city on error
+                    updateUIWithCityData();
+                }
+            });
         }
     }
 
+    /**
+     * Updates the UI with support information based on the selected city.
+     * Loads data from a JSON asset and sets clickable links and dialable numbers.
+     */
     private void updateUIWithCityData() {
         runOnUiThread(() -> {
             try {
@@ -129,6 +142,12 @@ public class SupportActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets a clickable URL link on a TextView.
+     * @param view TextView to set the link on
+     * @param label The label (e.g., "Local Services")
+     * @param url The URL string to open
+     */
     @SuppressLint("SetTextI18n")
     private void makeLink(TextView view, String label, String url) {
         if (url != null && url.startsWith("http")) {
@@ -142,6 +161,12 @@ public class SupportActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets a clickable phone number on a TextView that opens the dialer.
+     * @param view TextView to set the number on
+     * @param label The label (e.g., "Hotline")
+     * @param phoneNumber The phone number string (e.g., "tel:416-123-4567")
+     */
     @SuppressLint("SetTextI18n")
     private void makePhoneLink(TextView view, String label, String phoneNumber) {
         if (phoneNumber != null && phoneNumber.startsWith("tel:")) {
@@ -162,6 +187,11 @@ public class SupportActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loads a JSON string from the assets folder.
+     * @param filename Name of the file to load (e.g., "support.json")
+     * @return JSON string or null on failure
+     */
     private String loadJSONFromAsset(String filename) {
         try {
             InputStream is = getAssets().open(filename);
