@@ -30,7 +30,10 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Activity to display a multi-page survey powered by a unified JSON structure.
+ * Handles user navigation, dynamic question rendering, answer validation, and survey submission.
+ */
 public class SurveyActivity extends AppCompatActivity {
     private static final String TAG = "SurveyActivity";
 
@@ -43,27 +46,43 @@ public class SurveyActivity extends AppCompatActivity {
     private JSONObject unifiedJson;
     private final Map<Integer, View> questionViews = new HashMap<>();
     private final String[] currentPageQuestionTypes = new String[10];
-
+    /**
+     * Initializes UI components, loads JSON data, and renders the first page of the survey.
+     * Also sets up emergency exit and navigation handlers.
+     *
+     * @param savedInstanceState Bundle containing saved state, if any.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
+
+        // Emergency exit setup
         FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
         if (exit_button != null) {
             EmergencyExitButton.setupEmergencyExit(this, exit_button);
         }
+
+        // Initialize view references
         surveyContainer = findViewById(R.id.surveyContainer);
         pageIndicator = findViewById(R.id.pageIndicator);
         buttonSurvey = findViewById(R.id.buttonSurvey);
 
+        // Obtain ViewModel for survey state
         viewModel = new ViewModelProvider(this).get(SurveyViewModel.class);
+
+        // Load JSON data and first page
         loadUnifiedJson();
         loadPage(currentPage);
         buttonSurvey.setText("Next");
 
+        // Set up navigation click handler
         buttonSurvey.setOnClickListener(v -> handleNavigation());
     }
-
+    /**
+     * Loads the unified survey JSON from assets into memory.
+     * Shows a toast and logs an error if loading fails.
+     */
     private void loadUnifiedJson() {
         try {
             String json = loadJSONFromAsset(this);
@@ -73,6 +92,10 @@ public class SurveyActivity extends AppCompatActivity {
             Toast.makeText(this, "Error loading survey data", Toast.LENGTH_SHORT).show();
         }
     }
+    /**
+     * Handles navigation logic for "Next" and "Submit" based on current page.
+     * Validates inputs, saves answers, updates ViewModel, and transitions pages or submits.
+     */
     private void handleNavigation() {
         if (currentPage == 1) {
             // Validate required questions
@@ -100,7 +123,7 @@ public class SurveyActivity extends AppCompatActivity {
         } else if (currentPage == 2) {
             if (!validatePage()) return;
             saveCurrentPageAnswers();
-            currentPage = 5; // Skip to last page after safety questions
+            currentPage = 5;
             loadPage(currentPage);
             buttonSurvey.setText("Submit");
 
@@ -110,7 +133,12 @@ public class SurveyActivity extends AppCompatActivity {
             submitSurvey();
         }
     }
-
+    /**
+     * Dynamically renders the specified survey page: clears previous views,
+     * loads question definitions from JSON, and adds input views to the container.
+     *
+     * @param pageNumber Logical page index to render.
+     */
     private void loadPage(int pageNumber) {
         surveyContainer.removeAllViews();
         questionViews.clear();
@@ -173,7 +201,13 @@ public class SurveyActivity extends AppCompatActivity {
             Toast.makeText(this, "Error loading questions", Toast.LENGTH_SHORT).show();
         }
     }
-
+    /**
+     * Maps a logical fragment page to the corresponding JSON page ID,
+     * considering branching based on user answers.
+     *
+     * @param fragmentPage Logical page number in UI flow.
+     * @return Matching JSON page ID.
+     */
     private int mapToJsonPageId(int fragmentPage) {
         switch (fragmentPage) {
             case 1: return 1;  // Basic Information
@@ -191,6 +225,15 @@ public class SurveyActivity extends AppCompatActivity {
             default: return 1;
         }
     }
+    /**
+     * Creates an input view based on question type and JSON definition.
+     *
+     * @param type         The input type ("text", "radio", "dropdown", etc.).
+     * @param questionObj  The JSON object defining the question.
+     * @param index        Index of question in current page.
+     * @return View representing the input control.
+     * @throws Exception if JSON parsing fails.
+     */
     private View createInputView(String type, JSONObject questionObj, int index) throws Exception {
         Context context = this;
 
@@ -211,7 +254,14 @@ public class SurveyActivity extends AppCompatActivity {
                 return createRadioInput(questionObj, index);
         }
     }
-
+    /**
+     * Creates an EditText for free-text input questions.
+     *
+     * @param questionObj JSON defining placeholder and ID.
+     * @param index       Index of question in the page (unused).
+     * @return Configured EditText control.
+     * @throws JSONException if parsing JSON fails.
+     */
     private EditText createTextInput(JSONObject questionObj, int index) throws JSONException {
         EditText editText = new EditText(this);
         editText.setHint(questionObj.optString("placeholder", "Enter your answer"));
@@ -225,7 +275,14 @@ public class SurveyActivity extends AppCompatActivity {
 
         return editText;
     }
-
+    /**
+     * Creates a set of radio buttons with an optional "Other" text input.
+     *
+     * @param questionObj JSON defining options and other placeholder.
+     * @param index       Index of question in page (unused).
+     * @return LinearLayout containing the RadioGroup and optional EditText.
+     * @throws Exception if JSON parsing fails.
+     */
     private LinearLayout createRadioWithOtherInput(JSONObject questionObj, int index) throws Exception {
         Context context = this;
         LinearLayout container = new LinearLayout(context);
@@ -285,7 +342,14 @@ public class SurveyActivity extends AppCompatActivity {
 
         return container;
     }
-
+    /**
+     * Creates a Spinner dropdown for single-selection questions.
+     *
+     * @param questionObj JSON defining options and ID.
+     * @param index       Index of question in page (unused).
+     * @return Configured Spinner control.
+     * @throws Exception if JSON parsing fails.
+     */
     private Spinner createDropdownInput(JSONObject questionObj, int index) throws Exception {
         Spinner spinner = new Spinner(this);
         JSONArray options = questionObj.getJSONArray("options");
@@ -318,7 +382,14 @@ public class SurveyActivity extends AppCompatActivity {
 
         return spinner;
     }
-
+    /**
+     * Creates a series of CheckBoxes for multi-selection questions.
+     *
+     * @param questionObj JSON defining options and ID.
+     * @param index       Index of question in page (unused).
+     * @return LinearLayout containing CheckBox controls.
+     * @throws Exception if JSON parsing fails.
+     */
     private LinearLayout createCheckboxInput(JSONObject questionObj, int index) throws Exception {
         Context context = this;
         LinearLayout container = new LinearLayout(context);
@@ -350,7 +421,14 @@ public class SurveyActivity extends AppCompatActivity {
 
         return container;
     }
-
+    /**
+     * Creates a RadioGroup for single-selection questions.
+     *
+     * @param questionObj JSON defining options and ID.
+     * @param index       Index of question in page (unused).
+     * @return Configured RadioGroup.
+     * @throws Exception if JSON parsing fails.
+     */
     private RadioGroup createRadioInput(JSONObject questionObj, int index) throws Exception {
         RadioGroup radioGroup = new RadioGroup(this);
         radioGroup.setOrientation(RadioGroup.VERTICAL);
@@ -377,7 +455,10 @@ public class SurveyActivity extends AppCompatActivity {
 
         return radioGroup;
     }
-
+    /**
+     * Saves user answers from current page views into the ViewModel.
+     * Handles different input types accordingly.
+     */
     private void saveCurrentPageAnswers() {
         for (int i = 0; i < currentPageQuestionTypes.length; i++) {
             if (currentPageQuestionTypes[i] == null) continue;
@@ -444,7 +525,12 @@ public class SurveyActivity extends AppCompatActivity {
             }
         }
     }
-
+    /**
+     * Validates that required text inputs on the current page are not empty.
+     * Shows a Toast prompt if validation fails.
+     *
+     * @return true if all validations pass, false otherwise.
+     */
     private boolean validatePage() {
         for (int i = 0; i < currentPageQuestionTypes.length; i++) {
             if (currentPageQuestionTypes[i] == null) continue;
@@ -476,7 +562,9 @@ public class SurveyActivity extends AppCompatActivity {
         }
         return true;
     }
-
+    /**
+     * Submits the survey: collects all answers, generates tips, and navigates to TipsActivity.
+     */
     private void submitSurvey() {
         // Collect all answers
         StringBuilder surveyResults = new StringBuilder();
@@ -514,7 +602,12 @@ public class SurveyActivity extends AppCompatActivity {
         startActivity(intent);
         finish(); // Close this activity
     }
-
+    /**
+     * Reads a JSON file from assets and returns its content as a String.
+     *
+     * @param context Application context for asset access.
+     * @return String content of the JSON file or null if an error occurs.
+     */
     private String loadJSONFromAsset(Context context) {
         try (InputStream is = context.getAssets().open("questions_and_tips.json")) {
             int size = is.available();
