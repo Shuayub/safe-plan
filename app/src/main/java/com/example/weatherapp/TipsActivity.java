@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +31,10 @@ public class TipsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tips);
 
+        FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
+        if (exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(this, exit_button);
+        }
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         NavigationButton.setupNavigation(this, bottomNav);
         bottomNav.setSelectedItemId(R.id.nav_plan);

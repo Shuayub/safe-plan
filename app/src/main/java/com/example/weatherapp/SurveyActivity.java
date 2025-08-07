@@ -20,6 +20,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +48,10 @@ public class SurveyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
-
+        FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
+        if (exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(this, exit_button);
+        }
         surveyContainer = findViewById(R.id.surveyContainer);
         pageIndicator = findViewById(R.id.pageIndicator);
         buttonSurvey = findViewById(R.id.buttonSurvey);
