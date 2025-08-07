@@ -11,17 +11,35 @@ import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Utility class for generating, selecting, and saving personalized tips
+ * based on survey responses using data from a unified JSON structure.
+ */
 public class Tips {
     private static final String TIPS_FILE = "tips.json";
     private static final int MAX_TIPS = 20;
-
+    /**
+     * Generates and saves a list of personalized tips to local storage,
+     * based on the user's survey responses and a unified JSON file.
+     *
+     * @param context     The application context used for file operations.
+     * @param viewModel   The ViewModel containing survey answers.
+     * @param unifiedJson The parsed JSON containing all survey tips and logic.
+     */
     public static void generateAndSaveTips(Context context, SurveyViewModel viewModel, JSONObject unifiedJson) {
         resetTipsFile(context);
         List<String> tipsList = selectPersonalizedTips(context, viewModel, unifiedJson);
         saveTipsToJson(context, tipsList);
     }
-
+    /**
+     * Selects a personalized list of tips from the unified JSON file
+     * by applying filtering logic and condition checks against survey responses.
+     *
+     * @param context     The application context.
+     * @param viewModel   The ViewModel containing user answers.
+     * @param unifiedJson The JSON object with all tips and metadata.
+     * @return A list of selected tip strings.
+     */
     private static List<String> selectPersonalizedTips(Context context, SurveyViewModel viewModel, JSONObject unifiedJson) {
         List<String> selectedTips = new ArrayList<>();
         if (unifiedJson == null) return selectedTips;
@@ -30,7 +48,7 @@ public class Tips {
             JSONArray allTips = unifiedJson.getJSONArray("tips");
             String page1Choice = viewModel.getPage1Choice();
 
-            // Determine which section to include based on P1Q1 answer
+            // Determine relevant section (P2a, P2b, or P2c)
             String includedSection = null;
             if (page1Choice != null) {
                 if (page1Choice.equals("Still in a relationship")) {
@@ -74,7 +92,14 @@ public class Tips {
         }
         return selectedTips;
     }
-
+    /**
+     * Evaluates whether a given tip meets the condition criteria
+     * based on the user's survey answer for a specific question.
+     *
+     * @param tip       The tip JSON object with condition logic.
+     * @param viewModel The ViewModel containing survey responses.
+     * @return true if the tip should be shown, false otherwise.
+     */
     private static boolean evaluateTipConditions(JSONObject tip, SurveyViewModel viewModel) {
         try {
             String questionId = tip.getString("question_id");
@@ -115,6 +140,12 @@ public class Tips {
             return false;
         }
     }
+    /**
+     * Saves a list of selected tips to a local JSON file for offline access.
+     *
+     * @param context   The application context used to write the file.
+     * @param tipsList  A list of tip strings to save.
+     */
     private static void saveTipsToJson(Context context, List<String> tipsList) {
         try {
             JSONObject json = new JSONObject();
@@ -128,6 +159,11 @@ public class Tips {
             Log.e("Tips", "Save failed", e);
         }
     }
+    /**
+     * Deletes the existing tips file to ensure fresh data is saved.
+     *
+     * @param context The application context used to delete the file.
+     */
     private static void resetTipsFile(Context context) {
         try {
             context.deleteFile(TIPS_FILE);
