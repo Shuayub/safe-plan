@@ -36,6 +36,10 @@ public class TipsActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.tipsRecyclerView);
         Button backButton = findViewById(R.id.actionButton);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(TipsActivity.this, SurveyActivity.class);
+            startActivity(intent);
+        });
         TextView emptyView = findViewById(R.id.emptyTextView);
 
         List<String> tips = loadSavedTips();

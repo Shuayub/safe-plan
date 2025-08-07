@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/homebackground">
 
-    <!-- Scrollable Main Content -->
     <ScrollView
         android:id="@+id/mainScrollView"
         android:layout_width="0dp"
@@ -24,187 +23,75 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:orientation="vertical"
-            android:layout_marginTop="50dp">
-
-            <TextView
-                android:id="@+id/tv_greeting"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:textAlignment="center"
-                android:text="Stay Safe!"
-                android:textColor="#2D5A5A"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="32dp"
+                android:orientation="vertical"
+                android:layout_marginTop="50dp">
 
-            <TextView
-                android:id="@+id/tv_subtitle"
+                <TextView
+                    android:id="@+id/tv_greeting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:textAlignment="center"
+                    android:text="Stay Safe!"
+                    android:textColor="#2D5A5A"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_subtitle"
+                    android:layout_width="match_parent"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"
+                    android:text="Your wellbeing matters"
+                    android:textColor="#4A7C7C"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:textAlignment="center"
                 android:layout_height="wrap_content"
-                android:text="Your wellbeing matters"
-                android:textColor="#4A7C7C"
-                android:textSize="16sp" />
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:textAlignment="center"
+                    android:text="Disclaimer!"
+                    android:textColor="#EFFF0000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:orientation="vertical">
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:lineSpacingExtra="@dimen/activity_horizontal_margin"
+                android:text="Please note that this app should NOT be used as a substitute for emergency services. Additionally, all safety plans are personal and are not guaranteed to prevent harm."
                 android:textAlignment="center"
-                android:text="Disclaimer"
-                android:textColor="#EFFF0000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:textAlignment="center"
-                android:text="Please note that this app should NOT be used as a substitute for emergency services. Additionally, all safety plans are personal and are not guaranteed to prevent harm"
-                android:textColor="#EFFF0000"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:lineSpacingExtra="@dimen/activity_horizontal_margin"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="Quick Actions"
-                android:textColor="#2D5A5A"
+                android:textColor="#D32F2F"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Emergency Button -->
-            <androidx.cardview.widget.CardView
+            <TextView
+                android:id="@+id/partnershipText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="#FF6B6B"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="12dp"
-                        android:src="@drawable/ic_emergency"
-                        app:tint="#FFFFFF" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="Emergency Contact"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="12dp"
-                        android:src="@drawable/ic_check_circle"
-                        app:tint="#4A7C7C" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="Safe Check-in"
-                        android:textColor="#2D5A5A"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="12dp"
-                        android:src="@drawable/ic_info"
-                        app:tint="#4A7C7C" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="Safety Resources"
-                        android:textColor="#2D5A5A"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
+                android:text="We are proud to be partnered with Toronto Victim Services to provide users with access to trusted community support. Together, we aim to promote safety, healing, and resilience."
+                android:textColor="#3F51B5"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:layout_margin="16dp"
+                android:padding="8dp"
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 
