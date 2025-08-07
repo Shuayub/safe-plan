@@ -74,11 +74,14 @@ Password: 123456
 1. **Clone the repository**:
  git clone https://github.com/your-username/safe-plan.git
  cd safe-plan
+
 2. Open the project in Android Studio
 
-3. Add required files:
+3. Change Open Weather API key
+
+4. Add required files:
  google-services.json in app/
 
-4. Sync Gradle and build the project
+5. Sync Gradle and build the project
 
-5. Run on emulator or physical device
+6. Run on emulator or physical device
