@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AppInsightsSettings">
+    <option name="tabSettings">
+      <map>
+        <entry key="Firebase Crashlytics">
+          <value>
+            <InsightsFilterSettings>
+              <option name="connection">
+                <ConnectionSetting>
+                  <option name="appId" value="com.example.weatherapp" />
+                  <option name="mobileSdkAppId" value="1:1084625879730:android:cdc21476177cdc945a3fab" />
+                  <option name="projectId" value="weatherapp-63ad9" />
+                  <option name="projectNumber" value="1084625879730" />
+                </ConnectionSetting>
+              </option>
+              <option name="signal" value="SIGNAL_UNSPECIFIED" />
+              <option name="timeIntervalDays" value="THIRTY_DAYS" />
+              <option name="visibilityType" value="ALL" />
+            </InsightsFilterSettings>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="selectedTabId" value="Android Vitals" />
+  </component>
+</project>

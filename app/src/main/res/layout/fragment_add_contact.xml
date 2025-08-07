@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:padding="24dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView android:text="Add Contact" android:textSize="20sp" android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText android:id="@+id/contact_name" android:hint="Name" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <EditText android:id="@+id/contact_relationship" android:hint="Relationship" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <EditText android:id="@+id/contact_phone" android:hint="Phone Number" android:inputType="phone" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+    <Button android:id="@+id/save_button" android:text="Save" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="16dp"
+        android:backgroundTint="@color/primary"/>
+
+
+</LinearLayout>
