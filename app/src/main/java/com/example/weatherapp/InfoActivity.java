@@ -50,7 +50,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/***
  InfoActivity displays and manages user information such as emergency contacts, documents, medications, and locations.
  Allows viewing, adding, editing, and deleting these items using Firebase.
  Handles bottom navigation and emergency exit button setup.
@@ -60,7 +60,7 @@ public class InfoActivity extends AppCompatActivity {
     private Button addContactBtn, addDocumentBtn, addMedicationBtn, addLocationBtn;
     String uid;
 
-    //Initializes the activity, sets up UI elements, obtains user ID, sets click listeners, and loads user data (documents, contacts, medications, locations).
+    /** Initializes the activity, sets up UI elements, obtains user ID, sets click listeners, and loads user data (documents, contacts, medications, locations).*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +133,7 @@ public class InfoActivity extends AppCompatActivity {
 
     }
 
-    //Loads user documents from Firebase, displays them with View and Delete buttons.
+    /** Loads user documents from Firebase, displays them with View and Delete buttons.*/
     private void loadDocuments() {
         LinearLayout documentListLayout = findViewById(R.id.document_list_layout);
         documentListLayout.removeAllViews();
@@ -191,7 +191,7 @@ public class InfoActivity extends AppCompatActivity {
                     ));
                     viewButton.setOnClickListener(v -> {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setDataAndType(Uri.parse(fileUrl), "*/*");
+                        intent.setDataAndType(Uri.parse(fileUrl), "*/**");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     });
@@ -258,7 +258,7 @@ public class InfoActivity extends AppCompatActivity {
         });
     }
 
-    //Loads user emergency contacts from Firebase, displays them in a table with Edit and Delete buttons.
+    /** Loads user emergency contacts from Firebase, displays them in a table with Edit and Delete buttons.*/
     private void loadContacts() {
         LinearLayout contactListLayout = findViewById(R.id.contact_list_layout);
         contactListLayout.removeAllViews();
@@ -418,7 +418,7 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
     }
-//    Loads user medications from Firebase, displays them with Edit and Delete buttons.
+/**  Loads user medications from Firebase, displays them with Edit and Delete buttons.**/
 
     public void loadMedications() {
         LinearLayout medicationListLayout = findViewById(R.id.medication_list_layout);
@@ -529,7 +529,7 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
     }
-    //Loads user safe locations from Firebase, displays them with Edit and Delete buttons.
+    /**Loads user safe locations from Firebase, displays them with Edit and Delete buttons.**/
     public void loadLocations() {
         LinearLayout locationListLayout = findViewById(R.id.location_list_layout);
         locationListLayout.removeAllViews();
@@ -644,7 +644,7 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
     }
-    /*
+    /**
     * Returns a resized drawable icon from resources at the specified dp size.
 
     Parameters:
@@ -675,7 +675,7 @@ public class InfoActivity extends AppCompatActivity {
         divider.setBackgroundColor(ContextCompat.getColor(this, R.color.gray)); // Add `light_gray` to your colors.xml
         parent.addView(divider);
     }
-    /*
+    /**
 
     Converts dp units to pixels.
 
@@ -694,7 +694,7 @@ public class InfoActivity extends AppCompatActivity {
         );
     }
 
-    /*
+    /**
     Creates a MaterialButton with an icon only, styled for edit/delete actions.
 
     Parameters:
