@@ -60,7 +60,7 @@ Password: 123456
 - Registration screen (multi-step)
 - Login screen (including PIN logic)
 
-### 🧑‍💻 Additya
+### 🧑‍💻 Aaditya
 - Reminder backend support and logic
 - Emergency Exit button
 - Weather screen
