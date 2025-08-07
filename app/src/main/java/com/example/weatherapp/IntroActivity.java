@@ -10,8 +10,27 @@ import com.example.weatherapp.RegistrationPartOne.RegistrationPartOneActivityVie
 import com.example.weatherapp.databinding.ActivityIntroBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+
+/**
+ * IntroActivity is the initial landing screen of the app after the user comes from the weather Screen.
+ * It determines the user's next step based on previously saved shared preferences.
+ * It also initializes an optional emergency exit button if available in the layout.
+ * The layout is inflated using ViewBinding via.
+ */
 public class IntroActivity extends AppCompatActivity {
 
+    /**
+     * Called when the activity is starting.
+     * This method:
+     *      - Initializes ViewBinding
+     *      - Checks for and sets up the emergency exit button if present
+     *      - Determines the navigation flow based on shared preferences:
+     *              - createdAccount
+     *              - createdPin
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     *                           this Bundle contains the data it most recently supplied.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

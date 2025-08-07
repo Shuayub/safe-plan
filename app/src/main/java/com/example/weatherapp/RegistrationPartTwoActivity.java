@@ -12,11 +12,35 @@ import com.example.weatherapp.databinding.ActivityRegistrationPartTwoBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
+
+/**
+ * RegistrationPartTwoActivity handles the second step of user registration,
+ * where the user is asked to create a secure PIN.
+ * Key responsibilities of this activity:
+ *   - Validates the entered PIN (must be 4 or 6 digits).
+ *   - Stores the PIN and Firebase user UID in shared preferences.
+ *   - Navigates the user to SurveyActivity after successful setup.
+ *   - Displays error messages for invalid PINs.
+ *   - Sets up an emergency exit button, if available.
+ * UI components are accessed using ViewBinding via ActivityRegistrationPartTwoBinding.
+ */
 public class RegistrationPartTwoActivity extends AppCompatActivity {
 
     private ActivityRegistrationPartTwoBinding binding;
     private FirebaseAuth mAuth;
 
+    /**
+     * Called when the activity is first created.
+     * This method:
+     *   - Initializes ViewBinding and sets the content view.
+     *   - Initializes FirebaseAuth instance.
+     *   - Sets up the emergency exit button, if found in the layout.
+     *   - Handles the logic for PIN submission and validation.
+     *   - Clears error states when the PIN input field is modified.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after being shut down,
+     *                           this Bundle contains the data it most recently supplied.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
