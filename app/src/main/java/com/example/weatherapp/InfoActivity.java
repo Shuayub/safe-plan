@@ -50,10 +50,17 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ InfoActivity displays and manages user information such as emergency contacts, documents, medications, and locations.
+ Allows viewing, adding, editing, and deleting these items using Firebase.
+ Handles bottom navigation and emergency exit button setup.
+ */
 public class InfoActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
     private Button addContactBtn, addDocumentBtn, addMedicationBtn, addLocationBtn;
     String uid;
+
+    //Initializes the activity, sets up UI elements, obtains user ID, sets click listeners, and loads user data (documents, contacts, medications, locations).
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +133,7 @@ public class InfoActivity extends AppCompatActivity {
 
     }
 
+    //Loads user documents from Firebase, displays them with View and Delete buttons.
     private void loadDocuments() {
         LinearLayout documentListLayout = findViewById(R.id.document_list_layout);
         documentListLayout.removeAllViews();
@@ -250,6 +258,7 @@ public class InfoActivity extends AppCompatActivity {
         });
     }
 
+    //Loads user emergency contacts from Firebase, displays them in a table with Edit and Delete buttons.
     private void loadContacts() {
         LinearLayout contactListLayout = findViewById(R.id.contact_list_layout);
         contactListLayout.removeAllViews();
@@ -409,6 +418,7 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
     }
+//    Loads user medications from Firebase, displays them with Edit and Delete buttons.
 
     public void loadMedications() {
         LinearLayout medicationListLayout = findViewById(R.id.medication_list_layout);
@@ -519,6 +529,7 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
     }
+    //Loads user safe locations from Firebase, displays them with Edit and Delete buttons.
     public void loadLocations() {
         LinearLayout locationListLayout = findViewById(R.id.location_list_layout);
         locationListLayout.removeAllViews();
@@ -633,6 +644,13 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
     }
+    /*
+    * Returns a resized drawable icon from resources at the specified dp size.
+
+    Parameters:
+    resId - Drawable resource ID
+    sizeDp - Size in density-independent pixels
+*/
 
     private Drawable getResizedIcon(int resId, int sizeDp) {
         Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), resId);
@@ -646,6 +664,8 @@ public class InfoActivity extends AppCompatActivity {
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, sizePx, sizePx, true);
         return new BitmapDrawable(getResources(), scaledBitmap);
     }
+
+//    Adds a horizontal divider line to the given LinearLayout.
     private void addDivider(LinearLayout parent) {
         View divider = new View(this);
         divider.setLayoutParams(new LinearLayout.LayoutParams(
@@ -655,6 +675,17 @@ public class InfoActivity extends AppCompatActivity {
         divider.setBackgroundColor(ContextCompat.getColor(this, R.color.gray)); // Add `light_gray` to your colors.xml
         parent.addView(divider);
     }
+    /*
+
+    Converts dp units to pixels.
+
+    Parameters:
+    dp - Value in dp
+
+    Returns:
+    Corresponding value in pixels
+
+     */
     private int dpToPx(int dp) {
         return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
@@ -662,6 +693,17 @@ public class InfoActivity extends AppCompatActivity {
                 getResources().getDisplayMetrics()
         );
     }
+
+    /*
+    Creates a MaterialButton with an icon only, styled for edit/delete actions.
+
+    Parameters:
+    iconRes - Drawable resource ID for the icon
+    tintColorRes - Color resource ID for icon tint and stroke
+
+    Returns:
+    Configured MaterialButton instance
+     */
     private MaterialButton createIconButton(int iconRes, int tintColorRes) {
         MaterialButton button = new MaterialButton(this, null, com.google.android.material.R.attr.materialButtonOutlinedStyle);
         button.setIcon(getResizedIcon(iconRes, 20));

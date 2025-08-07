@@ -7,7 +7,17 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+//Helper class to set up bottom navigation view with proper icon and text colors,
+//and handle navigation item selection to switch between activities.
 public class NavigationButton {
+
+    //Configures the BottomNavigationView with colors and sets an item selection listener.
+    //Starts the corresponding activity when a navigation item is selected,
+    //except if the current activity is already the target one.
+    //Applies no transition animation and finishes the current activity.
+    //Parameters:
+    //activity - The current Activity context
+    //navView - The BottomNavigationView to set up
     public static void setupNavigation(Activity activity, BottomNavigationView navView) {
         navView.setItemIconTintList(ContextCompat.getColorStateList(activity, R.color.nav_icon_color));
         navView.setItemTextColor(ContextCompat.getColorStateList(activity, R.color.nav_text_color));

@@ -32,16 +32,45 @@ import com.google.firebase.storage.StorageReference;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/*
+ DialogFragment for adding various types of items (Contact, Document, Location, Medication)
+ to the Firebase Realtime Database and Firebase Storage (for documents).
+
+ Displays a custom dialog form depending on the item category and handles validation,
+ saving to the database, and file uploads where applicable.
+
+Supported categories:
+  - contact
+  - document
+  - location
+ *- medication
+ */
 public class AddItemDialogFragment extends DialogFragment {
 
     private String category;
     private String uid;
     private ActivityResultLauncher<Intent> filePickerLauncher;
     private Uri selectedFileUri;
+
+
+
+    /**
+     * Constructor that sets the category type for the dialog.
+     *
+     * @param category The type of item to add (contact, document, location, medication)
+     */
     public AddItemDialogFragment(String category) {
         this.category = category;
     }
 
+    /**
+     * Called when the Dialog is created. Dynamically inflates the appropriate layout
+     * based on the selected category, sets up form handling and Firebase logic.
+     *
+     * @param savedInstanceState Bundle for saved state.
+     * @return The configured AlertDialog instance.
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -106,6 +135,11 @@ public class AddItemDialogFragment extends DialogFragment {
         return dialog;
     }
 
+    /**
+     * Initializes and handles submission for the contact form.
+     *
+     * @param view The inflated layout view.
+     */
     private void setupContactForm(View view) {
         EditText name = view.findViewById(R.id.contact_name);
         EditText relationship = view.findViewById(R.id.contact_relationship);
@@ -149,7 +183,11 @@ public class AddItemDialogFragment extends DialogFragment {
                     });
         });
     }
-
+    /**
+     * Sets up the document form UI and handles file selection and upload.
+     *
+     * @param view The inflated layout view.
+     */
     private void setupDocumentForm(View view) {
         EditText docName = view.findViewById(R.id.document_name);
         Button selectFile = view.findViewById(R.id.select_file_button);
@@ -212,6 +250,11 @@ public class AddItemDialogFragment extends DialogFragment {
 
     }
 
+    /**
+     * Sets up the location form UI and handles saving the address and notes.
+     *
+     * @param view The inflated layout view.
+     */
     private void setupLocationForm(View view) {
         EditText address = view.findViewById(R.id.location_address);
         EditText notes = view.findViewById(R.id.location_notes);
@@ -255,7 +298,11 @@ public class AddItemDialogFragment extends DialogFragment {
                     });
         });
     }
-
+    /**
+     * Sets up the medication form and handles saving medication name and dosage.
+     *
+     * @param view The inflated layout view.
+     */
     private void setupMedicationForm(View view) {
         EditText name = view.findViewById(R.id.medication_name);
         EditText dosage = view.findViewById(R.id.medication_dosage);

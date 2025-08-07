@@ -24,6 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+
+ // Dialog fragment that allows editing of an existing item (contact, location, or medication).
+
 public class EditItemDialogFragment extends DialogFragment {
 
     private final String category;
@@ -31,12 +34,25 @@ public class EditItemDialogFragment extends DialogFragment {
     private final Map<String, String> currentData;
     private String uid;
 
+
+    /**
+     * Constructor for the edit dialog fragment.
+     *
+     * @param category    The type of item being edited (e.g., "contact", "location", "medication").
+     * @param itemId      The Firebase database ID of the item.
+     * @param currentData The current data of the item to populate the form fields.
+     */
     public EditItemDialogFragment(String category, String itemId, Map<String, String> currentData) {
         this.category = category;
         this.itemId = itemId;
         this.currentData = currentData;
     }
-
+    /**
+     * Creates and returns the dialog view depending on the category.
+     *
+     * @param savedInstanceState The saved state, if any.
+     * @return A dialog that allows the user to edit the specified item.
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -79,6 +95,11 @@ public class EditItemDialogFragment extends DialogFragment {
         return dialog;
     }
 
+    /**
+     * Sets up the contact form and handles updating contact data in Firebase.
+     *
+     * @param view The inflated view containing the form.
+     */
     private void setupContactForm(View view) {
         EditText name = view.findViewById(R.id.contact_name);
         EditText relationship = view.findViewById(R.id.contact_relationship);
@@ -124,6 +145,12 @@ public class EditItemDialogFragment extends DialogFragment {
         });
     }
 
+    /**
+     * Sets up the location form and handles updating location data in Firebase.
+     *
+     * @param view The inflated view containing the form.
+     */
+
     private void setupLocationForm(View view) {
         EditText address = view.findViewById(R.id.location_address);
         EditText notes = view.findViewById(R.id.location_notes);
@@ -165,6 +192,11 @@ public class EditItemDialogFragment extends DialogFragment {
         });
     }
 
+    /**
+     * Sets up the medication form and handles updating medication data in Firebase.
+     *
+     * @param view The inflated view containing the form.
+     */
     private void setupMedicationForm(View view) {
         EditText name = view.findViewById(R.id.medication_name);
         EditText dosage = view.findViewById(R.id.medication_dosage);
