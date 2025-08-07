@@ -35,15 +35,16 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
-        if (exit_button != null) {
-            EmergencyExitButton.setupEmergencyExit(this, exit_button);
-        }
 
         ActivityIntroBinding binding = ActivityIntroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         new SharedPreferenceHelper(this);
 
+
+        FloatingActionButton exit_button = findViewById(R.id.emergency_exit_button);
+        if (exit_button != null) {
+            EmergencyExitButton.setupEmergencyExit(this, exit_button);
+        }
         binding.GetStartedButton.setOnClickListener(v -> {
             boolean createdAccount = SharedPreferenceHelper.sharedPreferences.getBoolean("createdAccount", false);
             boolean createdPin = SharedPreferenceHelper.sharedPreferences.getBoolean("createdPin", false);
