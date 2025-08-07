@@ -121,15 +121,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="22dp"
+            android:layout_marginBottom="24dp"
             android:contentDescription="Quick Exit"
             app:backgroundTint="#81D4FA"
-            app:tint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.479"
+            app:layout_constraintStart_toStartOf="parent"
             app:maxImageSize="210dp"
             app:srcCompat="@drawable/ic_quick_exit"
-            app:layout_constraintTop_toBottomOf="@id/bottom_navigation"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:tint="@null" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
